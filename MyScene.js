@@ -23,6 +23,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
 
         //Objects connected to MyInterface
+        this.cylinder=new MyCylinder(this,20,2);
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -57,8 +58,9 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
+        this.cylinder.display();
 
-
+        this.cylinder.enableNormalViz();
         // ---- END Primitive drawing section
     }
 }
