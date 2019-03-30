@@ -8,11 +8,8 @@ serialInclude(['../lib/CGF.js','MyScene.js',
                     'MyPyramid.js', 
                     'MyQuad.js', 
                     'MyUnitCubeQuad.js',
-<<<<<<< HEAD
                     'MyPrism.js',
-=======
                     'MyCylinder.js',
->>>>>>> 0fe2e2c469251aef528d4fb5c3c207afe700f33d
 
 main=function()
 {
