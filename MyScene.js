@@ -68,7 +68,7 @@ class MyScene extends CGFscene {
         // this.cylinder.display();
         // this.cylinder.enableNormalViz();
 
-        this.hill.display();
+        // this.hill.display();
 
         // ---- END Primitive drawing section
     }

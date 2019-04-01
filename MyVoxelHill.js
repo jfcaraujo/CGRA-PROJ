@@ -24,10 +24,12 @@ class MyVoxelHill extends CGFobject {
         for (var l = 0; l < this.levels; l++) {
             for (var i = 0; i < side; i++) {
                 for (var j = 0; j < side; j++) {
-                    this.scene.pushMatrix();
-                    this.scene.translate(i - (side - 1)/2 + 1 ,this.levels - l,j - (side-1)/2 + 1);
-                    this.cube.display();
-                    this.scene.popMatrix();
+                    if (i == 0 || i == (side-1) || j == 0 || j == (side-1)) {
+                        this.scene.pushMatrix();
+                        this.scene.translate(i - (side - 1)/2 + 1 ,this.levels - l,j - (side-1)/2 + 1);
+                        this.cube.display();
+                        this.scene.popMatrix();
+                    }
                 }
             }
             side += 2;
