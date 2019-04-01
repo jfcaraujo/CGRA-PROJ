@@ -22,6 +22,7 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.prism = new MyPrism(this,7);
+        this.hill = new MyVoxelHill(this,5);
 
         //Objects connected to MyInterface
         this.cylinder=new MyCylinder(this,20,2);
@@ -63,8 +64,11 @@ class MyScene extends CGFscene {
         //Uncomment what you want to test
         // this.prism.display();
         // this.prism.enableNormalViz();
+
         // this.cylinder.display();
         // this.cylinder.enableNormalViz();
+
+        this.hill.display();
 
         // ---- END Primitive drawing section
     }
