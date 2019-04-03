@@ -3,10 +3,11 @@
  * @constructor
  */
 class MyCylinder extends CGFobject {
-    constructor(scene, slices, height) {
+    constructor(scene, slices, height, radius) {
         super(scene);
         this.slices = slices;
         this.height = height;
+        this.radius = radius;
         this.initBuffers();
     }
 
@@ -20,11 +21,11 @@ class MyCylinder extends CGFobject {
         var alphaAng = 2 * Math.PI / this.slices;
 
         for (var i = 0; i <= this.slices; i++) {
-            this.vertices.push(Math.cos(ang), 0, -Math.sin(ang));
-            this.vertices.push(Math.cos(ang), this.height, -Math.sin(ang));
+            this.vertices.push(this.radius*Math.cos(ang), 0, -Math.sin(ang)*this.radius);
+            this.vertices.push(this.radius*Math.cos(ang), this.height, -Math.sin(ang)*this.radius);
             if (i != this.slices) {
-                this.indices.push(i*2, i*2 + 2, i*2 + 1);
-                this.indices.push(i*2 + 2, i*2 + 3, i*2 + 1);
+                this.indices.push(i * 2, i * 2 + 2, i * 2 + 1);
+                this.indices.push(i * 2 + 2, i * 2 + 3, i * 2 + 1);
             }
             this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
             this.normals.push(Math.cos(ang), 0, -Math.sin(ang));

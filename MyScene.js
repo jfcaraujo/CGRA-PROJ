@@ -10,6 +10,7 @@ class MyScene extends CGFscene {
         super.init(application);
         this.initCameras();
         this.initLights();
+        this.initTextures();
 
         //Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -23,9 +24,25 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.prism = new MyPrism(this,7);
         this.hill = new MyVoxelHill(this,5);
+        this.cylinder=new MyCylinder(this,20,2,0.5);
+        this.tree=new MyTree(this,2,0.5,4,3,this.text1,this.text2);
 
         //Objects connected to MyInterface
-        this.cylinder=new MyCylinder(this,20,2);
+        
+    }
+    initTextures(){
+        this.text1 = new CGFappearance(this);
+        this.text1.setAmbient(1, 0, 1, 1.0);
+        this.text1.setDiffuse(1, 0, 1, 1.0);
+        this.text1.setSpecular(1, 0, 1, 1.0);
+        this.text1.setShininess(10.0);
+
+        this.text2 = new CGFappearance(this);
+        this.text2.setAmbient(0, 1, 1, 1.0);
+        this.text2.setDiffuse(0, 1, 1, 1.0);
+        this.text2.setSpecular(0, 1, 1, 1.0);
+        this.text2.setShininess(10.0);
+
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -62,13 +79,15 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         //Uncomment what you want to test
-        // this.prism.display();
-        // this.prism.enableNormalViz();
+         //this.prism.display();
+        //this.cone.enableNormalViz();
 
-        // this.cylinder.display();
+
+         //this.cylinder.display();
         // this.cylinder.enableNormalViz();
 
-        // this.hill.display();
+         //this.hill.display();
+        this.tree.display();
 
         // ---- END Primitive drawing section
     }
