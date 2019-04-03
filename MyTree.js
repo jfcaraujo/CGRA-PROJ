@@ -14,8 +14,6 @@ class MyTree extends CGFobject {
     }
     display() {
         // ---- BEGIN Primitive drawing section
-        this.cone.enableNormalViz();
-        this.cylinder.enableNormalViz();
         this.trunkTexture.apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
         this.cylinder.display();
@@ -27,5 +25,9 @@ class MyTree extends CGFobject {
         this.cone.display();
         this.scene.popMatrix();
 
+    }
+    enableNormalViz(){
+        this.cone.enableNormalViz();
+        this.cylinder.enableNormalViz();
     }
 }
