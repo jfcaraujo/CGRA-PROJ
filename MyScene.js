@@ -26,7 +26,8 @@ class MyScene extends CGFscene {
         this.hill = new MyVoxelHill(this,5);
         this.cylinder=new MyCylinder(this,20,2,0.5);
         this.tree=new MyTree(this,1,0.5,4,2,this.text1,this.text2);
-        this.treePatch=new MyTreeGroupPatch(this,this.text1,this.text2);
+        this.treeGroup=new MyTreeGroupPatch(this,this.text1,this.text2);
+        this.treeRow=new MyTreeRowPatch(this,this.text1,this.text2);
 
         //Objects connected to MyInterface
         
@@ -52,7 +53,7 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(20, 5, 45), vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -88,7 +89,7 @@ class MyScene extends CGFscene {
         // this.cylinder.enableNormalViz();
 
          //this.hill.display();
-        this.treePatch.display();
+        this.treeRow.display();
 
         // ---- END Primitive drawing section
     }

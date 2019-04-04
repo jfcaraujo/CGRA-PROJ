@@ -23,6 +23,12 @@ class MyTree extends CGFobject {
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
         this.scene.translate(0,this.height,0);
         this.cone.display();
+        this.scene.translate(0,this.cone.height/3,0);
+        this.scene.scale(0.9,0.9,0.9);
+        this.cone.display();
+        this.scene.translate(0,this.cone.height/3,0);
+        this.scene.scale(0.9,0.9,0.9);
+        this.cone.display();
         this.scene.popMatrix();
 
     }
