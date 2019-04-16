@@ -36,9 +36,9 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this);
 
         //Objects connected to MyInterface
-        this.displayAxis=false;
-        this.useTextures=true;
-        this.timeOfDay=0;
+        this.displayAxis = false;
+        this.useTextures = true;
+        this.timeOfDay = 0;
         this.timeIds = {'Day': 0, 'Night': 1};
 
     }
@@ -76,10 +76,11 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
 
-    updateTimeOfDay(){
-        if (this.timeOfDay===0) this.cubeMap.dayMode();
-        else if (this.timeOfDay===1) this.cubeMap.nightMode();
+    updateTimeOfDay() {
+        if (this.timeOfDay == 0) this.cubeMap.dayMode();
+        else if (this.timeOfDay == 1) this.cubeMap.nightMode();
     }
+
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
@@ -93,8 +94,7 @@ class MyScene extends CGFscene {
         this.applyViewMatrix();
 
         // Draw axis
-        if (this.displayAxis)
-            this.axis.display();
+        if (this.displayAxis) this.axis.display();
 
         //Apply default appearance
         this.setDefaultAppearance();
@@ -114,7 +114,7 @@ class MyScene extends CGFscene {
 
         //this.hill.display();
         //this.treeRow.display();
-        this.updateTimeOfDay();
+        // this.updateTimeOfDay();
 
         this.cubeMap.display();
         // ---- END Primitive drawing section
