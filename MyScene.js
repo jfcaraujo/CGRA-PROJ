@@ -98,28 +98,20 @@ class MyScene extends CGFscene {
         // this.prism.displayT();
         // this.prism.enableNormalViz();
         //this.prism.display();
-<<<<<<< HEAD
-        
-        //this.cubeMap.enableNormalViz();
-=======
->>>>>>> 3ae3c69fba302fc217e0c8b108c66cdd0b87a0bc
 
 
         //this.cylinder.display();
         // this.cylinder.enableNormalViz();
 
-        this.house.display();
+        // this.house.display();
 
         //this.hill.display();
         //this.treeRow.display();
 
-<<<<<<< HEAD
-=======
         if (this.dayMode)
             this.cubeMap.dayMode();
         else this.cubeMap.nightMode();
 
->>>>>>> 3ae3c69fba302fc217e0c8b108c66cdd0b87a0bc
         this.pushMatrix();
         this.scale(30, 30, 30);
         this.cubeMap.display();
