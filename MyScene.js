@@ -22,6 +22,8 @@ class MyScene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
 
+        this.enableTextures(true);
+
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.prism = new MyPrism(this, 7);
@@ -31,6 +33,7 @@ class MyScene extends CGFscene {
         this.treeGroup = new MyTreeGroupPatch(this, this.text1, this.text2);
         this.treeRow = new MyTreeRowPatch(this, this.text1, this.text2);
         this.cubeMap = new MyCubeMap(this);
+        this.house = new MyHouse(this);
 
         //Objects connected to MyInterface
         this.displayAxis=false;
@@ -99,11 +102,15 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         //Uncomment what you want to test
+        // this.prism.displayT();
+        // this.prism.enableNormalViz();
         //this.prism.display();
 
 
         //this.cylinder.display();
         // this.cylinder.enableNormalViz();
+
+        // this.house.display();
 
         //this.hill.display();
         //this.treeRow.display();

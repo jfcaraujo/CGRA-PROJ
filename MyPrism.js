@@ -3,9 +3,12 @@
  * @constructor
  */
 class MyPrism extends CGFobject {
-    constructor(scene, slices) {
+    constructor(scene, slices, height, radius) {
         super(scene);
         this.slices = slices;
+        this.height = height;
+        this.radius = radius;
+        this.scene = scene;
         this.initBuffers();
     }
     initBuffers() {
@@ -59,6 +62,12 @@ class MyPrism extends CGFobject {
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
+    }
+    displayT() {
+        this.scene.pushMatrix();
+        this.scene.scale(this.radius,this.height,this.radius);
+        this.display();
+        this.scene.popMatrix();
     }
     updateBuffers(complexity) {
         this.slices = 3 * Math.round(9*complexity);
