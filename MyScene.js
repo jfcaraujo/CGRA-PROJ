@@ -1,15 +1,17 @@
 /**
-* MyScene
-* @constructor
-*/
+ * MyScene
+ * @constructor
+ */
 class MyScene extends CGFscene {
     constructor() {
         super();
     }
+
     init(application) {
         super.init(application);
         this.initCameras();
         this.initLights();
+        this.initTextures();
 
         //Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -18,33 +20,67 @@ class MyScene extends CGFscene {
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
+        this.enableTextures(true);
 
         this.enableTextures(true);
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.prism = new MyPrism(this,7,7);
-        this.hill = new MyVoxelHill(this,5);
+        this.prism = new MyPrism(this, 7);
+        this.hill = new MyVoxelHill(this, 5);
+        this.cylinder = new MyCylinder(this, 20, 2, 0.5);
+        this.tree = new MyTree(this, 1, 0.5, 4, 2, this.text1, this.text2);
+        this.treeGroup = new MyTreeGroupPatch(this, this.text1, this.text2);
+        this.treeRow = new MyTreeRowPatch(this, this.text1, this.text2);
+        this.cubeMap = new MyCubeMap(this);
         this.house = new MyHouse(this);
 
         //Objects connected to MyInterface
-        this.cylinder=new MyCylinder(this,20,2);
+
     }
+
+    initTextures() {
+        this.text1 = new CGFappearance(this);
+        this.text1.setAmbient(1, 0, 1, 1.0);
+        this.text1.setDiffuse(1, 0, 1, 1.0);
+        this.text1.setSpecular(1, 0, 1, 1.0);
+        this.text1.setShininess(10.0);
+
+        this.text2 = new CGFappearance(this);
+        this.text2.setAmbient(0, 1, 1, 1.0);
+        this.text2.setDiffuse(0, 1, 1, 1.0);
+        this.text2.setSpecular(0, 1, 1, 1.0);
+        this.text2.setShininess(10.0);
+
+        this.day = new CGFappearance(this);
+        this.day.setAmbient(1, 1, 1, 1.0);
+        this.day.setDiffuse(1, 1, 1, 1.0);
+        this.day.setSpecular(1, 1, 1, 1.0);
+        this.day.setShininess(10.0);
+        this.day.loadTexture('Images/day.png');
+        this.day.setTextureWrap('REPEAT', 'REPEAT');
+
+
+    }
+
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
         this.lights[0].update();
     }
+
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(20, 5, 45), vec3.fromValues(0, 0, 0));
     }
+
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
+
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
@@ -67,14 +103,25 @@ class MyScene extends CGFscene {
         //Uncomment what you want to test
         // this.prism.displayT();
         // this.prism.enableNormalViz();
+        //this.prism.display();
+        
+        //this.cubeMap.enableNormalViz();
 
-        // this.cylinder.display();
+
+        //this.cylinder.display();
         // this.cylinder.enableNormalViz();
-
-        // this.hill.display();
 
         this.house.display();
 
+        //this.hill.display();
+        //this.treeRow.display();
+
+        this.pushMatrix();
+        this.gl.texParameteri(this.gl.TEXTURE_CUBE_MAP, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
+        this.day.apply();
+        this.scale(30,30,30);
+        this.cubeMap.display();
+        this.popMatrix();
         // ---- END Primitive drawing section
     }
 }
