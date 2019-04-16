@@ -57,8 +57,8 @@ class MyQuad extends CGFobject {
 
 	/**
 	 * @method updateTexCoords
-	 * Updates the list of texture coordinates of the quad
-	 * @param {Array} coords - Array of texture coordinates
+	 * Updates the list of top coordinates of the quad
+	 * @param {Array} coords - Array of top coordinates
 	 */
 	updateTexCoords(coords) {
 		this.texCoords = [...coords];

@@ -6,123 +6,141 @@
 class MyCubeMap extends CGFobject {
     constructor(scene) {
         super(scene);
-        this.x = 0;//1 / 385;
-        this.y = 0;//1 / 511;
-        this.initBuffers();
+        this.init();
     }
 
-    initBuffers() {
-        this.vertices = [
-            0.5, 0.5, 0.5,	  //0
-            -0.5, 0.5, 0.5,   //1
-            -0.5, -0.5, 0.5,  //2
-            0.5, -0.5, 0.5,	  //3
-            0.5, 0.5, -0.5,   //4
-            -0.5, 0.5, -0.5,  //5
-            -0.5, -0.5, -0.5, //6
-            0.5, -0.5, -0.5,  //7
-            -0.5, 0.5, 0.5,   //8
-            -0.5, -0.5, 0.5,  //9
-            -0.5, -0.5, -0.5, //10
-            -0.5, 0.5, -0.5,  //11
-            0.5, 0.5, 0.5,	  //12
-            0.5, -0.5, 0.5,   //13
-            0.5, -0.5, -0.5,  //14
-            0.5, 0.5, -0.5,	  //15
-            0.5, 0.5, 0.5,    //16
-            -0.5, 0.5, 0.5,   //17
-            -0.5, 0.5, -0.5,  //18
-            0.5, 0.5, -0.5,   //19
-            0.5, -0.5, 0.5,	  //20
-            -0.5, -0.5, 0.5,  //21
-            -0.5, -0.5, -0.5, //22
-            0.5, -0.5, -0.5,  //23
-        ];
-
-        //Counter-clockwise reference of vertices
-        this.indices = [
-            0, 2, 1, //frente
-            2, 0, 3,
-            5, 7, 4, //tras
-            7, 5, 6,
-            8, 9, 10, //esquerda
-            10, 11, 8,
-            14, 13, 12, //direita
-            12, 15, 14,
-            16, 17, 18, //cima
-            18, 19, 16,
-            23, 22, 21, //baixo
-            21, 20, 23
-
-        ];
-        this.normals = [
-            0, 0, -1,
-            0, 0, -1,
-            0, 0, -1,
-            0, 0, -1,
-            0, 0, 1,
-            0, 0, 1,
-            0, 0, 1,
-            0, 0, 1,
-            1, 0, 0,
-            1, 0, 0,
-            1, 0, 0,
-            1, 0, 0,
-            -1, 0, 0,
-            -1, 0, 0,
-            -1, 0, 0,
-            -1, 0, 0,
-            0, -1, 0,
-            0, -1, 0,
-            0, -1, 0,
-            0, -1, 0,
-            0, 1, 0,
-            0, 1, 0,
-            0, 1, 0,
-            0, 1, 0
-        ];
-        /*
-		Texture coords (s,t)
-		+----------> s
-        |
-        |
-		|
-		v
-        t
-        */
-
-        this.texCoords = [
-            2 / 3 - this.x, 0.25 - this.y,
-            1 / 3 + this.x, 0.25 - this.y,
-            1 / 3 + this.x, 0 + this.y,
-            2 / 3 - this.x, 0 + this.y,
-            2 / 3 - this.x, 0.5 + this.y,
-            1 / 3 + this.x, 0.5 + this.y,
-            1 / 3 + this.x, 0.75 - this.y,
-            2 / 3 - this.x, 0.75 - this.y,
-            1 / 3 - this.x, 0.25 + this.y,
-            0 + this.x, 0.25 + this.y,
-            0 + this.x, 0.5 - this.y,
-            1 / 3 - this.x, 0.5 - this.y,
-            2 / 3, 0.25+this.y,
-            1, 0.25+this.y,
-            1, 0.5-this.y,
-            2 / 3-this.x, 0.5-this.y,
-            2 / 3-this.x, 0.25+this.y,
-            1 / 3+this.x, 0.25+this.y,
-            1 / 3+this.x, 0.5-this.y,
-            2 / 3-this.x, 0.5-this.y,
-            2 / 3-this.x, 1-this.y,
-            1 / 3+this.x, 1-this.y,
-            1 / 3+this.x, 0.75+this.y,
-            2 / 3-this.x, 0.75+this.y
-        ];
-        this.primitiveType = this.scene.gl.TRIANGLES;
-        this.initGLBuffers();
+    init() {
+        //create objects
+        this.quad = new MyQuad(this.scene);
+        this.day = true;
+        this.initTextures();
     }
 
-    updateBuffers(complexity) {
+    initTextures() {
+        this.top = new CGFappearance(this.scene);
+        this.top.setAmbient(1, 1, 1, 1.0);
+        this.top.setDiffuse(1, 1, 1, 1.0);
+        this.top.setSpecular(1, 1, 1, 1.0);
+        this.top.setShininess(10.0);
+        this.top.loadTexture('Images/powderpeak_up.png');
+        this.top.setTextureWrap('WRAP', 'WRAP');
+
+        this.bottom = new CGFappearance(this.scene);
+        this.bottom.setAmbient(1, 1, 1, 1.0);
+        this.bottom.setDiffuse(1, 1, 1, 1.0);
+        this.bottom.setSpecular(1, 1, 1, 1.0);
+        this.bottom.setShininess(10.0);
+        this.bottom.loadTexture('Images/powderpeak_dn.png');
+        this.bottom.setTextureWrap('WRAP', 'WRAP');
+
+        this.front = new CGFappearance(this.scene);
+        this.front.setAmbient(1, 1, 1, 1.0);
+        this.front.setDiffuse(1, 1, 1, 1.0);
+        this.front.setSpecular(1, 1, 1, 1.0);
+        this.front.setShininess(10.0);
+        this.front.loadTexture('Images/powderpeak_ft.png');
+        this.front.setTextureWrap('WRAP', 'WRAP');
+
+        this.back = new CGFappearance(this.scene);
+        this.back.setAmbient(1, 1, 1, 1.0);
+        this.back.setDiffuse(1, 1, 1, 1.0);
+        this.back.setSpecular(1, 1, 1, 1.0);
+        this.back.setShininess(10.0);
+        this.back.loadTexture('Images/powderpeak_bk.png');
+        this.back.setTextureWrap('WRAP', 'WRAP');
+
+        this.left = new CGFappearance(this.scene);
+        this.left.setAmbient(1, 1, 1, 1.0);
+        this.left.setDiffuse(1, 1, 1, 1.0);
+        this.left.setSpecular(1, 1, 1, 1.0);
+        this.left.setShininess(10.0);
+        this.left.loadTexture('Images/powderpeak_lf.png');
+        this.left.setTextureWrap('WRAP', 'WRAP');
+
+        this.right = new CGFappearance(this.scene);
+        this.right.setAmbient(1, 1, 1, 1.0);
+        this.right.setDiffuse(1, 1, 1, 1.0);
+        this.right.setSpecular(1, 1, 1, 1.0);
+        this.right.setShininess(10.0);
+        this.right.loadTexture('Images/powderpeak_rt.png');
+        this.right.setTextureWrap('WRAP', 'WRAP');
+
     }
+
+    display() {
+
+        // this.front.apply();
+        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_CUBE_MAP, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
+        //back
+        this.back.apply();
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0, -0.5);
+        this.quad.display();
+        this.scene.popMatrix();
+        //front
+        this.front.apply();
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0, 0.5);
+        this.scene.rotate(Math.PI, 0, 1, 0);
+        this.quad.display();
+        this.scene.popMatrix();
+        //right
+        this.right.apply();
+        this.scene.pushMatrix();
+        this.scene.translate(0.5, 0, 0);
+        this.scene.rotate(-Math.PI / 2, 0, 1.0, 0);
+        this.quad.display();
+        this.scene.popMatrix();
+        //left
+        this.left.apply();
+        this.scene.pushMatrix();
+        this.scene.translate(-0.5, 0, 0);
+        this.scene.rotate(Math.PI / 2, 0, 1, 0);
+        this.quad.display();
+        this.scene.popMatrix();
+
+        //top
+        this.top.apply();
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0.5, 0);
+        this.scene.rotate(Math.PI / 2, 1, 0, 0);
+        this.quad.display();
+        this.scene.popMatrix();
+
+        //bottom
+        this.bottom.apply();
+        this.scene.pushMatrix();
+        this.scene.translate(0, -0.5, 0);
+        this.scene.rotate(-Math.PI / 2, 1, 0, 0);
+        this.quad.display();
+        this.scene.popMatrix();
+    }
+
+    dayMode() {
+        if (!this.day) {
+            this.day = true;
+            this.top.loadTexture('Images/powderpeak_up.png');
+            this.bottom.loadTexture('Images/powderpeak_dn.png');
+            this.front.loadTexture('Images/powderpeak_ft.png');
+            this.back.loadTexture('Images/powderpeak_bk.png');
+            this.left.loadTexture('Images/powderpeak_lf.png');
+            this.right.loadTexture('Images/powderpeak_rt.png');
+        }
+
+    }
+
+    nightMode() {
+        if (this.day) {
+            this.day = false;
+            this.top.loadTexture('Images/snowy_up.png');
+            this.bottom.loadTexture('Images/snowy_dn.png');
+            this.front.loadTexture('Images/snowy_ft.png');
+            this.back.loadTexture('Images/snowy_bk.png');
+            this.left.loadTexture('Images/snowy_lf.png');
+            this.right.loadTexture('Images/snowy_rt.png');
+        }
+    }
+
 
 
 }

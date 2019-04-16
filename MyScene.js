@@ -33,6 +33,8 @@ class MyScene extends CGFscene {
         this.cubeMap = new MyCubeMap(this);
 
         //Objects connected to MyInterface
+        this.displayAxis=false;
+        this.dayMode=true;
 
     }
 
@@ -49,15 +51,6 @@ class MyScene extends CGFscene {
         this.text2.setSpecular(0, 1, 1, 1.0);
         this.text2.setShininess(10.0);
 
-        this.day = new CGFappearance(this);
-        this.day.setAmbient(1, 1, 1, 1.0);
-        this.day.setDiffuse(1, 1, 1, 1.0);
-        this.day.setSpecular(1, 1, 1, 1.0);
-        this.day.setShininess(10.0);
-        this.day.loadTexture('Images/day.png');
-        this.day.setTextureWrap('REPEAT', 'REPEAT');
-
-
     }
 
     initLights() {
@@ -68,7 +61,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(20, 5, 45), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(0, 0, 0), vec3.fromValues(0, 0, 1));
     }
 
     setDefaultAppearance() {
@@ -90,7 +83,8 @@ class MyScene extends CGFscene {
         this.applyViewMatrix();
 
         // Draw axis
-        this.axis.display();
+        if (this.displayAxis)
+            this.axis.display();
 
         //Apply default appearance
         this.setDefaultAppearance();
@@ -99,7 +93,6 @@ class MyScene extends CGFscene {
 
         //Uncomment what you want to test
         //this.prism.display();
-        //this.cubeMap.enableNormalViz();
 
 
         //this.cylinder.display();
@@ -107,10 +100,13 @@ class MyScene extends CGFscene {
 
         //this.hill.display();
         //this.treeRow.display();
+
+        if (this.dayMode)
+            this.cubeMap.dayMode();
+        else this.cubeMap.nightMode();
+
         this.pushMatrix();
-        this.gl.texParameteri(this.gl.TEXTURE_CUBE_MAP, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
-        this.day.apply();
-        this.scale(30,30,30);
+        this.scale(30, 30, 30);
         this.cubeMap.display();
         this.popMatrix();
         // ---- END Primitive drawing section

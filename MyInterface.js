@@ -15,6 +15,8 @@ class MyInterface extends CGFinterface {
         this.gui = new dat.GUI();
         
         var obj = this;
+        this.gui.add(this.scene, 'displayAxis').name("Display axis");
+        this.gui.add(this.scene, 'dayMode').name("Day mode");
 
         return true;
     }
