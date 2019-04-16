@@ -34,7 +34,9 @@ class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis=false;
-        this.dayMode=true;
+        this.useTextures=true;
+        this.timeOfDay=0;
+        this.timeIds = {'Day': 0, 'Night': 1};
 
     }
 
@@ -61,7 +63,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(0, 0, 0), vec3.fromValues(0, 0, 1));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(0, 0, -1), vec3.fromValues(0, 0, 0));
     }
 
     setDefaultAppearance() {
@@ -71,9 +73,14 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
 
+    updateTimeOfDay(){
+        if (this.timeOfDay===0) this.cubeMap.dayMode();
+        else if (this.timeOfDay===1) this.cubeMap.nightMode();
+    }
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
+        this.enableTextures(this.useTextures);
         this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
         // Initialize Model-View matrix as identity (no transformation
@@ -100,15 +107,9 @@ class MyScene extends CGFscene {
 
         //this.hill.display();
         //this.treeRow.display();
+        this.updateTimeOfDay();
 
-        if (this.dayMode)
-            this.cubeMap.dayMode();
-        else this.cubeMap.nightMode();
-
-        this.pushMatrix();
-        this.scale(30, 30, 30);
         this.cubeMap.display();
-        this.popMatrix();
         // ---- END Primitive drawing section
     }
 }
