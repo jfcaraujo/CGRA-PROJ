@@ -19,10 +19,13 @@ class MyScene extends CGFscene {
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
 
+        this.enableTextures(true);
+
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.prism = new MyPrism(this,7);
+        this.prism = new MyPrism(this,7,7);
         this.hill = new MyVoxelHill(this,5);
+        this.house = new MyHouse(this);
 
         //Objects connected to MyInterface
         this.cylinder=new MyCylinder(this,20,2);
@@ -62,13 +65,15 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         //Uncomment what you want to test
-        // this.prism.display();
+        // this.prism.displayT();
         // this.prism.enableNormalViz();
 
         // this.cylinder.display();
         // this.cylinder.enableNormalViz();
 
         // this.hill.display();
+
+        this.house.display();
 
         // ---- END Primitive drawing section
     }
