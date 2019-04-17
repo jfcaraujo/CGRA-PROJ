@@ -11,7 +11,6 @@ class MyScene extends CGFscene {
         super.init(application);
         this.initCameras();
         this.initLights();
-        this.initTextures();
 
         //Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -30,9 +29,8 @@ class MyScene extends CGFscene {
         this.hill = new MyVoxelHill(this, 5);
         this.hill2 = new MyVoxelHill(this, 4);
         this.cylinder = new MyCylinder(this, 20, 2, 0.5);
-        this.tree = new MyTree(this, 1, 0.5, 4, 2, this.text1, this.text2);
-        this.treeGroup = new MyTreeGroupPatch(this, this.trunkText, this.leavesText);
-        this.treeRow = new MyTreeRowPatch(this, this.trunkText, this.leavesText);
+        this.treeGroup = new MyTreeGroupPatch(this);
+        this.treeRow = new MyTreeRowPatch(this);
         this.cubeMap = new MyCubeMap(this);
         this.house = new MyHouse(this);
         this.quad=new MyQuad(this);
@@ -42,25 +40,6 @@ class MyScene extends CGFscene {
         this.useTextures = true;
         this.timeOfDay = 0;
         this.timeIds = {'Day': 0, 'Night': 1};
-
-    }
-
-    initTextures() {
-        this.trunkText = new CGFappearance(this);
-        this.trunkText.setAmbient(1, 1, 1, 1.0);
-        this.trunkText.setDiffuse(1, 1, 1, 1.0);
-        this.trunkText.setSpecular(1, 1, 1, 1.0);
-        this.trunkText.setShininess(10.0);
-        this.trunkText.loadTexture('textures/trunk_texture.jpg');
-        this.trunkText.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
-
-        this.leavesText = new CGFappearance(this);
-        this.leavesText.setAmbient(1, 1, 1, 1.0);
-        this.leavesText.setDiffuse(1, 1, 1, 1.0);
-        this.leavesText.setSpecular(1, 1, 1, 1.0);
-        this.leavesText.setShininess(10.0);
-        this.leavesText.loadTexture('textures/leaves_texture.png');
-        this.leavesText.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
     }
 
@@ -152,7 +131,7 @@ class MyScene extends CGFscene {
         this.quad.display();
         this.popMatrix();
 
-        
+
         this.treeRow.display();
 
         //house
