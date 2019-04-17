@@ -130,8 +130,21 @@ class MyScene extends CGFscene {
         //floor
         this.floor.display();
 
+        //treegroup
+        this.pushMatrix();
+        this.translate(0, 0, 25);
+        this.treeGroup.display();
+        this.translate(7, 0, 15);
+        this.treeGroup.display();
+        this.popMatrix();
 
+        //treerow
+        this.pushMatrix();
+        this.translate(35, 0, -13);
         this.treeRow.display();
+        this.translate(10, 0, 0);
+        this.treeRow.display();
+        this.popMatrix();
 
         //house
         this.pushMatrix();
