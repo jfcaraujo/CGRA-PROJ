@@ -20,7 +20,7 @@ class MyFloor extends CGFobject {
         this.floorMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         this.quad = new MyQuad(this.scene);
-        this.quad.updateTexCoords([0, 30, 30, 30, 0, 0, 30, 0]);
+        this.quad.updateTexCoords([0, 100, 100, 100, 0, 0, 100, 0]);
     }
 
 	display() {
