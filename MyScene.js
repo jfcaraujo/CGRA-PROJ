@@ -21,18 +21,15 @@ class MyScene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
 
-        this.enableTextures(true);
-
         //Initialize scene objects
         this.axis = new CGFaxis(this)
         this.hill = new MyVoxelHill(this, 5);
         this.hill2 = new MyVoxelHill(this, 4);
-        this.cone=new MyCone(this,15,0.75,0.5);
-        this.treeGroup = new MyTreeGroupPatch(this, this.trunkText, this.leavesText);
-        this.treeRow = new MyTreeRowPatch(this, this.trunkText, this.leavesText);
+        this.fireplace = new MyFireplace(this);
+        this.treeGroup = new MyTreeGroupPatch(this);
+        this.treeRow = new MyTreeRowPatch(this);
         this.cubeMap = new MyCubeMap(this);
         this.house = new MyHouse(this);
-        this.quad = new MyQuad(this);
         this.floor = new MyFloor(this);
 
         //Objects connected to MyInterface
@@ -54,7 +51,7 @@ class MyScene extends CGFscene {
         this.lights[0].update();
 
         //the sun
-        this.lights[1].setPosition(100,100,0,1);
+        this.lights[1].setPosition(100, 100, 0, 1);
         this.lights[1].setDiffuse(1.0, 1.0, 0.5, 1.0);
         this.lights[1].setSpecular(1.0, 1.0, 0.5, 1.0);
         this.lights[1].setLinearAttenuation(0.0001)
@@ -63,7 +60,7 @@ class MyScene extends CGFscene {
         this.lights[1].update();
 
         //the moon
-        this.lights[2].setPosition(-100,100,0,1);
+        this.lights[2].setPosition(-100, 100, 0, 1);
         this.lights[2].setDiffuse(0.5, 0.5, 1, 1.0);
         this.lights[2].setSpecular(0.5, 0.5, 1, 1.0);
         this.lights[2].setLinearAttenuation(0.01)
@@ -90,14 +87,13 @@ class MyScene extends CGFscene {
             this.lights[2].disable();
             this.ambientLight = 0.6;
             this.setGlobalAmbientLight(this.ambientLight, this.ambientLight, this.ambientLight, 1.0);
-        }
-        else if (this.timeOfDay == 1) {
+        } else if (this.timeOfDay == 1) {
             this.cubeMap.nightMode();
             this.lights[1].disable();
             this.lights[2].enable();
             this.ambientLight = 0.2;
             this.setGlobalAmbientLight(this.ambientLight, this.ambientLight, this.ambientLight, 1.0);
-        }   
+        }
     }
 
     display() {
@@ -138,8 +134,8 @@ class MyScene extends CGFscene {
 
         //fireplace
         this.pushMatrix();
-        this.translate(7,0,0);
-        this.cone.display();
+        this.translate(7, 0, 0);
+        this.fireplace.display();
         this.popMatrix();
 
         //hills

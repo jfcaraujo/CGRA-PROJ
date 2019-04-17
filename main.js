@@ -45,6 +45,7 @@ serialInclude(['../lib/CGF.js',
     'MyVoxelHill.js',
     'MyHouse.js',
     'MyFloor.js',
+    'MyFireplace.js',
 
     main = function () {
         var app = new CGFapplication(document.body);

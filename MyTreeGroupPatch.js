@@ -10,7 +10,7 @@ class MyTreeGroupPatch extends CGFobject {
 
         this.initTextures();
 
-        this.tree = new MyTree(this.scene, 1, 0.5, 4, 2, this.trunkText, this.treeTopText);
+        this.tree = new MyTree(this.scene, 1, 0.5, 4, 2, this.trunkText, this.leavesText);
 
         this.numb1 = 4 + 2 * Math.random();
         this.numb2 = 4 + 2 * Math.random();
