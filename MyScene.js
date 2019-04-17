@@ -34,6 +34,7 @@ class MyScene extends CGFscene {
         this.treeRow = new MyTreeRowPatch(this, this.text1, this.text2);
         this.cubeMap = new MyCubeMap(this);
         this.house = new MyHouse(this);
+        this.quad=new MyQuad(this);
 
         //Objects connected to MyInterface
         this.displayAxis = false;
@@ -66,7 +67,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(0, 0, -1), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(1, 20, 1), vec3.fromValues(0, 0, 0));
     }
 
     setDefaultAppearance() {
@@ -105,8 +106,11 @@ class MyScene extends CGFscene {
         // this.prism.displayT();
         // this.prism.enableNormalViz();
         //this.prism.display();
-
-
+        this.pushMatrix();
+        this.scale(30,1,30);
+        this.rotate(-Math.PI/2,1,0,0);
+        this.quad.display();
+        this.popMatrix();
         //this.cylinder.display();
         // this.cylinder.enableNormalViz();
 
