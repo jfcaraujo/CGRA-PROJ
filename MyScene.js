@@ -25,12 +25,10 @@ class MyScene extends CGFscene {
         this.enableTextures(true);
 
         //Initialize scene objects
-        this.axis = new CGFaxis(this);
-        this.prism = new MyPrism(this, 7);
+        this.axis = new CGFaxis(this)
         this.hill = new MyVoxelHill(this, 5);
         this.hill2 = new MyVoxelHill(this, 4);
-        this.cylinder = new MyCylinder(this, 20, 2, 0.5);
-        this.tree = new MyTree(this, 1, 0.5, 4, 2, this.text1, this.text2);
+        this.cone=new MyCone(this,15,0.75,0.5);
         this.treeGroup = new MyTreeGroupPatch(this, this.trunkText, this.leavesText);
         this.treeRow = new MyTreeRowPatch(this, this.trunkText, this.leavesText);
         this.cubeMap = new MyCubeMap(this);
@@ -155,9 +153,9 @@ class MyScene extends CGFscene {
 
         //base
         this.pushMatrix();
-        this.scale(30, 1, 30);
+        this.scale(100, 1, 100);
         this.rotate(-Math.PI / 2, 1, 0, 0);
-        this.quad.updateTexCoords([0, 30, 30, 30, 0, 0, 30, 0]);
+        this.quad.updateTexCoords([0, 100, 100, 100, 0, 0, 100, 0]);
         this.quadTop.apply();
         this.quad.display();
         this.quad.updateTexCoords([0, 1, 1, 1, 0, 0, 1, 0]);
@@ -168,6 +166,13 @@ class MyScene extends CGFscene {
         this.translate(0, 0.01, 0);
         this.house.display();
         this.popMatrix();
+
+        //fireplace
+        this.pushMatrix();
+        this.translate(7,0,0);
+        this.cone.display();
+        this.popMatrix();
+
         //hills
         this.pushMatrix();
         this.translate(12, 0.01, 10);
