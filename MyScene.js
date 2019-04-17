@@ -27,7 +27,8 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.prism = new MyPrism(this, 7);
-        this.hill = new MyVoxelHill(this, 5);
+        this.hill = new MyVoxelHill(this, 4);
+        this.hill2 = new MyVoxelHill(this, 3);
         this.cylinder = new MyCylinder(this, 20, 2, 0.5);
         this.tree = new MyTree(this, 1, 0.5, 4, 2, this.text1, this.text2);
         this.treeGroup = new MyTreeGroupPatch(this, this.text1, this.text2);
@@ -67,7 +68,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(1, 20, 1), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(10, 20, 10), vec3.fromValues(0, 15, 0));
     }
 
     setDefaultAppearance() {
@@ -102,25 +103,27 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        //Uncomment what you want to test
-        // this.prism.displayT();
-        // this.prism.enableNormalViz();
-        //this.prism.display();
+        //base
         this.pushMatrix();
         this.scale(30,1,30);
         this.rotate(-Math.PI/2,1,0,0);
         this.quad.display();
         this.popMatrix();
-        //this.cylinder.display();
-        // this.cylinder.enableNormalViz();
-
-        // this.house.display();
-
-        //this.hill.display();
-        //this.treeRow.display();
-        // this.updateTimeOfDay();
-
+        //house
+        this.house.display();
+        //hills
+        this.pushMatrix();
+        this.translate(12,0,10);
+        this.hill2.display();
+        this.translate(-22,0,-19);
+        this.hill.display();
+        this.popMatrix();
+        //cubemap
+        this.pushMatrix();
+        this.translate(0,15,0);
         this.cubeMap.display();
+        this.popMatrix();
+
         // ---- END Primitive drawing section
     }
 }
