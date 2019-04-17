@@ -33,7 +33,7 @@ class MyScene extends CGFscene {
         this.treeRow = new MyTreeRowPatch(this);
         this.cubeMap = new MyCubeMap(this);
         this.house = new MyHouse(this);
-        this.quad=new MyQuad(this);
+        this.quad = new MyQuad(this);
 
         //Objects connected to MyInterface
         this.displayAxis = false;
@@ -43,6 +43,36 @@ class MyScene extends CGFscene {
 
     }
 
+<<<<<<< HEAD
+=======
+    initTextures() {
+        this.trunkText = new CGFappearance(this);
+        this.trunkText.setAmbient(1, 1, 1, 1.0);
+        this.trunkText.setDiffuse(1, 1, 1, 1.0);
+        this.trunkText.setSpecular(1, 1, 1, 1.0);
+        this.trunkText.setShininess(10.0);
+        this.trunkText.loadTexture('textures/trunk_texture.jpg');
+        this.trunkText.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+
+        this.leavesText = new CGFappearance(this);
+        this.leavesText.setAmbient(1, 1, 1, 1.0);
+        this.leavesText.setDiffuse(1, 1, 1, 1.0);
+        this.leavesText.setSpecular(1, 1, 1, 1.0);
+        this.leavesText.setShininess(10.0);
+        this.leavesText.loadTexture('textures/leaves_texture.png');
+        this.leavesText.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+
+        //quad material top
+        this.quadTop = new CGFappearance(this);
+        this.quadTop.setAmbient(1, 1, 1, 1.0);
+        this.quadTop.setDiffuse(1, 1, 1, 1.0);
+        this.quadTop.setSpecular(1, 1, 1, 1.0);
+        this.quadTop.setShininess(10.0);
+        this.quadTop.loadTexture('textures/mineTop.png');
+        this.quadTop.setTextureWrap('REPEAT', 'REPEAT');
+    }
+
+>>>>>>> 7b9221145a6738e9710094d4010130ab72b5cad9
     initLights() {
         this.ambientLight = 0.5;
         this.setGlobalAmbientLight(this.ambientLight, this.ambientLight, this.ambientLight, 1.0);
@@ -126,25 +156,30 @@ class MyScene extends CGFscene {
 
         //base
         this.pushMatrix();
-        this.scale(30,1,30);
-        this.rotate(-Math.PI/2,1,0,0);
+        this.scale(30, 1, 30);
+        this.rotate(-Math.PI / 2, 1, 0, 0);
+        this.quad.updateTexCoords([0, 30, 30, 30, 0, 0, 30, 0]);
+        this.quadTop.apply();
         this.quad.display();
+        this.quad.updateTexCoords([0, 1, 1, 1, 0, 0, 1, 0]);
         this.popMatrix();
 
+<<<<<<< HEAD
 
         this.treeRow.display();
 
+=======
+>>>>>>> 7b9221145a6738e9710094d4010130ab72b5cad9
         //house
         this.pushMatrix();
-        this.translate(0,0.01,0);
+        this.translate(0, 0.01, 0);
         this.house.display();
         this.popMatrix();
-
         //hills
         this.pushMatrix();
-        this.translate(12,0.01,10);
+        this.translate(12, 0.01, 10);
         this.hill2.display();
-        this.translate(-22,0.01,-19);
+        this.translate(-22, 0.01, -19);
         this.hill.display();
         this.popMatrix();
 
