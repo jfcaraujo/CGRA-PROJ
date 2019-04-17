@@ -33,8 +33,8 @@ class MyScene extends CGFscene {
         this.treeRow = new MyTreeRowPatch(this);
         this.cubeMap = new MyCubeMap(this);
         this.house = new MyHouse(this);
-        this.quad = new MyQuad(this);
         this.floor = new MyFloor(this);
+        this.lake = new MyLake(this);
 
         //Objects connected to MyInterface
         this.displayAxis = false;
@@ -136,6 +136,7 @@ class MyScene extends CGFscene {
         this.translate(0, 0.01, 0);
         this.house.display();
         this.popMatrix();
+        
         //hills
         this.pushMatrix();
         this.translate(12, 0.01, 10);
@@ -146,6 +147,9 @@ class MyScene extends CGFscene {
 
         //cubemap
         this.cubeMap.display();
+
+        //lake
+        this.lake.display();
 
         // ---- END Primitive drawing section
     }

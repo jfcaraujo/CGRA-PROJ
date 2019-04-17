@@ -13,8 +13,8 @@ class MyHouse extends CGFobject {
 		//create materials
 		this.marbleMaterial = new CGFappearance(this.scene);
 		this.marbleMaterial.setAmbient(0.5, 0.5, 0.5, 1);
-		this.marbleMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-		this.marbleMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+		this.marbleMaterial.setDiffuse(0.5, 0.5, 0.5, 1);
+		this.marbleMaterial.setSpecular(1, 1, 1, 1);
 		this.marbleMaterial.setShininess(10.0);
 		this.marbleMaterial.loadTexture('textures/Marble.jpg');
 		this.marbleMaterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -22,7 +22,7 @@ class MyHouse extends CGFobject {
 		this.blueTiledRoofMaterial = new CGFappearance(this.scene);
 		this.blueTiledRoofMaterial.setAmbient(0.5, 0.5, 0.5, 1);
 		this.blueTiledRoofMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-		this.blueTiledRoofMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+		this.blueTiledRoofMaterial.setSpecular(0, 0, 0, 1);
 		this.blueTiledRoofMaterial.setShininess(10.0);
 		this.blueTiledRoofMaterial.loadTexture('textures/BlueTileRoof.jpg');
 		this.blueTiledRoofMaterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -30,7 +30,7 @@ class MyHouse extends CGFobject {
 		this.whiteWoodMaterial = new CGFappearance(this.scene);
 		this.whiteWoodMaterial.setAmbient(0.5, 0.5, 0.5, 1);
 		this.whiteWoodMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-		this.whiteWoodMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+		this.whiteWoodMaterial.setSpecular(0, 0, 0, 1);
 		this.whiteWoodMaterial.setShininess(10.0);
 		this.whiteWoodMaterial.loadTexture('textures/WhiteWood.jpg');
 		this.whiteWoodMaterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -38,7 +38,7 @@ class MyHouse extends CGFobject {
 		this.doorMAterial = new CGFappearance(this.scene);
 		this.doorMAterial.setAmbient(0.5, 0.5, 0.5, 1);
 		this.doorMAterial.setDiffuse(0.9, 0.9, 0.9, 1);
-		this.doorMAterial.setSpecular(0.1, 0.1, 0.1, 1);
+		this.doorMAterial.setSpecular(0, 0, 0, 1);
 		this.doorMAterial.setShininess(10.0);
 		this.doorMAterial.loadTexture('textures/Door.jpg');
 		this.doorMAterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -46,7 +46,7 @@ class MyHouse extends CGFobject {
 		this.windowMaterial = new CGFappearance(this.scene);
 		this.windowMaterial.setAmbient(0.5, 0.5, 0.5, 1);
 		this.windowMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-		this.windowMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+		this.windowMaterial.setSpecular(0, 0, 0, 1);
 		this.windowMaterial.setShininess(10.0);
 		this.windowMaterial.loadTexture('textures/Window.png');
 		this.windowMaterial.setTextureWrap('REPEAT', 'REPEAT');
