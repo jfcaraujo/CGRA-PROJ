@@ -24,12 +24,11 @@ class MyScene extends CGFscene {
         this.enableTextures(true);
 
         //Initialize scene objects
-        this.axis = new CGFaxis(this);
-        this.prism = new MyPrism(this, 7);
+        this.axis = new CGFaxis(this)
         this.hill = new MyVoxelHill(this, 5);
         this.hill2 = new MyVoxelHill(this, 4);
-        this.cylinder = new MyCylinder(this, 20, 2, 0.5);
-        this.treeGroup = new MyTreeGroupPatch(this);
+        this.cone=new MyCone(this,15,0.75,0.5);
+        this.treeGroup = new MyTreeGroupPatch(this)
         this.treeRow = new MyTreeRowPatch(this);
         this.cubeMap = new MyCubeMap(this);
         this.house = new MyHouse(this);
@@ -136,7 +135,13 @@ class MyScene extends CGFscene {
         this.translate(0, 0.01, 0);
         this.house.display();
         this.popMatrix();
-        
+
+        //fireplace
+        this.pushMatrix();
+        this.translate(7,0,0);
+        this.cone.display();
+        this.popMatrix();
+
         //hills
         this.pushMatrix();
         this.translate(12, 0.01, 10);
