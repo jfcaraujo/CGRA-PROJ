@@ -43,7 +43,7 @@ class MyScene extends CGFscene {
     }
 
     initLights() {
-        this.ambientLight = 0.5;
+        this.ambientLight = 0.6;
         this.setGlobalAmbientLight(this.ambientLight, this.ambientLight, this.ambientLight, 1.0);
 
         //fireplace
@@ -90,15 +90,14 @@ class MyScene extends CGFscene {
             this.lights[0].disable();
             this.lights[1].enable();
             this.lights[2].disable();
-            this.fireplace.turnOff();
             this.ambientLight = 0.6;
             this.setGlobalAmbientLight(this.ambientLight, this.ambientLight, this.ambientLight, 1.0);
+
         } else if (this.timeOfDay == 1) {
             this.cubeMap.nightMode();
             this.lights[0].enable();
             this.lights[1].disable();
             this.lights[2].enable();
-            this.fireplace.turnOn();
             this.ambientLight = 0.2;
             this.setGlobalAmbientLight(this.ambientLight, this.ambientLight, this.ambientLight, 1.0);
         }
