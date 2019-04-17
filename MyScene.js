@@ -31,8 +31,8 @@ class MyScene extends CGFscene {
         this.hill2 = new MyVoxelHill(this, 4);
         this.cylinder = new MyCylinder(this, 20, 2, 0.5);
         this.tree = new MyTree(this, 1, 0.5, 4, 2, this.text1, this.text2);
-        this.treeGroup = new MyTreeGroupPatch(this, this.text1, this.text2);
-        this.treeRow = new MyTreeRowPatch(this, this.text1, this.text2);
+        this.treeGroup = new MyTreeGroupPatch(this, this.trunkText, this.leavesText);
+        this.treeRow = new MyTreeRowPatch(this, this.trunkText, this.leavesText);
         this.cubeMap = new MyCubeMap(this);
         this.house = new MyHouse(this);
         this.quad=new MyQuad(this);
@@ -46,17 +46,21 @@ class MyScene extends CGFscene {
     }
 
     initTextures() {
-        this.text1 = new CGFappearance(this);
-        this.text1.setAmbient(1, 0, 1, 1.0);
-        this.text1.setDiffuse(1, 0, 1, 1.0);
-        this.text1.setSpecular(1, 0, 1, 1.0);
-        this.text1.setShininess(10.0);
+        this.trunkText = new CGFappearance(this);
+        this.trunkText.setAmbient(1, 1, 1, 1.0);
+        this.trunkText.setDiffuse(1, 1, 1, 1.0);
+        this.trunkText.setSpecular(1, 1, 1, 1.0);
+        this.trunkText.setShininess(10.0);
+        this.trunkText.loadTexture('textures/trunk_texture.jpg');
+        this.trunkText.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
-        this.text2 = new CGFappearance(this);
-        this.text2.setAmbient(0, 1, 1, 1.0);
-        this.text2.setDiffuse(0, 1, 1, 1.0);
-        this.text2.setSpecular(0, 1, 1, 1.0);
-        this.text2.setShininess(10.0);
+        this.leavesText = new CGFappearance(this);
+        this.leavesText.setAmbient(1, 1, 1, 1.0);
+        this.leavesText.setDiffuse(1, 1, 1, 1.0);
+        this.leavesText.setSpecular(1, 1, 1, 1.0);
+        this.leavesText.setShininess(10.0);
+        this.leavesText.loadTexture('textures/leaves_texture.png');
+        this.leavesText.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
     }
 
@@ -90,7 +94,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(10, 20, 10), vec3.fromValues(0, 15, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(12, 2, 12), vec3.fromValues(0, 5, 0));
     }
 
     setDefaultAppearance() {
@@ -147,6 +151,9 @@ class MyScene extends CGFscene {
         this.rotate(-Math.PI/2,1,0,0);
         this.quad.display();
         this.popMatrix();
+
+        
+        this.treeRow.display();
 
         //house
         this.pushMatrix();
