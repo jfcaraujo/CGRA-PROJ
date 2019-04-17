@@ -31,6 +31,7 @@ class MyScene extends CGFscene {
         this.cubeMap = new MyCubeMap(this);
         this.house = new MyHouse(this);
         this.floor = new MyFloor(this);
+        this.lake = new MyLake(this);
 
         //Objects connected to MyInterface
         this.displayAxis = false;
@@ -148,6 +149,9 @@ class MyScene extends CGFscene {
 
         //cubemap
         this.cubeMap.display();
+
+        //lake
+        this.lake.display();
 
         // ---- END Primitive drawing section
     }

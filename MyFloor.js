@@ -24,10 +24,10 @@ class MyFloor extends CGFobject {
     }
 
 	display() {
+        this.floorMaterial.apply();
         this.scene.pushMatrix();
         this.scene.scale(100, 1, 100);
         this.scene.rotate(-Math.PI / 2, 1, 0, 0);
-        this.floorMaterial.apply();
         this.quad.display();
         this.scene.popMatrix();
 	}

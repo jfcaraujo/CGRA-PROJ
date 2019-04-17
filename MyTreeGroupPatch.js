@@ -21,7 +21,7 @@ class MyTreeGroupPatch extends CGFobject {
         this.trunkText = new CGFappearance(this.scene);
         this.trunkText.setAmbient(0.5, 0.5, 0.5, 1.0);
         this.trunkText.setDiffuse(1, 1, 1, 1.0);
-        this.trunkText.setSpecular(1, 1, 1, 1.0);
+        this.trunkText.setSpecular(0, 0, 0, 1.0);
         this.trunkText.setShininess(10.0);
         this.trunkText.loadTexture('textures/trunk_texture.jpg');
         this.trunkText.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
@@ -29,7 +29,7 @@ class MyTreeGroupPatch extends CGFobject {
         this.leavesText = new CGFappearance(this.scene);
         this.leavesText.setAmbient(0.5, 0.5, 0.5, 1.0);
         this.leavesText.setDiffuse(1, 1, 1, 1.0);
-        this.leavesText.setSpecular(1, 1, 1, 1.0);
+        this.leavesText.setSpecular(0, 0, 0, 1.0);
         this.leavesText.setShininess(10.0);
         this.leavesText.loadTexture('textures/leaves_texture.png');
         this.leavesText.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
