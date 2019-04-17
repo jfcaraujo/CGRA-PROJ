@@ -46,8 +46,8 @@ class MyScene extends CGFscene {
         this.setGlobalAmbientLight(this.ambientLight, this.ambientLight, this.ambientLight, 1.0);
 
         //fireplace
-        this.lights[0].setPosition(7, 0.1, 0, 1);
-        this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
+        this.lights[0].setPosition(15, 0.1, 0, 1);
+        this.lights[0].setDiffuse(1.0, 1.0, 0.5, 1.0);
         this.lights[1].setLinearAttenuation(0.5);
         this.lights[0].enable();
         this.lights[0].setVisible(true);
@@ -86,14 +86,18 @@ class MyScene extends CGFscene {
     updateTimeOfDay() {
         if (this.timeOfDay == 0) {
             this.cubeMap.dayMode();
+            this.lights[0].disable();
             this.lights[1].enable();
             this.lights[2].disable();
+            this.fireplace.turnOff();
             this.ambientLight = 0.6;
             this.setGlobalAmbientLight(this.ambientLight, this.ambientLight, this.ambientLight, 1.0);
         } else if (this.timeOfDay == 1) {
             this.cubeMap.nightMode();
+            this.lights[0].enable();
             this.lights[1].disable();
             this.lights[2].enable();
+            this.fireplace.turnOn();
             this.ambientLight = 0.2;
             this.setGlobalAmbientLight(this.ambientLight, this.ambientLight, this.ambientLight, 1.0);
         }
@@ -137,7 +141,7 @@ class MyScene extends CGFscene {
 
         //fireplace
         this.pushMatrix();
-        this.translate(7, 0, 0);
+        this.translate(15, 0, 0);
         this.fireplace.display();
         this.popMatrix();
 
