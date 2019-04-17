@@ -4,12 +4,35 @@
  * @param scene - Reference to MyScene object
  */
 class MyTreeRowPatch extends CGFobject {
-    constructor(scene, trunkTexture, treeTopTexture) {
+    constructor(scene) {
         super(scene);
-        this.tree = new MyTree(scene, 1, 0.5, 4, 2, trunkTexture, treeTopTexture);
+        this.scene = scene;
+        this.initTextures()
+
+        this.tree = new MyTree(this.scene, 1, 0.5, 4, 2, this.trunkText, this.leavesText);
+
         this.numb1 = 4 + 2 * Math.random();
         this.numb2 = 4 + 2 * Math.random();
         this.numb3 = 4 + 2 * Math.random();
+
+    }
+
+    initTextures() {
+        this.trunkText = new CGFappearance(this.scene);
+        this.trunkText.setAmbient(0.5, 0.5, 0.5, 1.0);
+        this.trunkText.setDiffuse(1, 1, 1, 1.0);
+        this.trunkText.setSpecular(1, 1, 1, 1.0);
+        this.trunkText.setShininess(10.0);
+        this.trunkText.loadTexture('textures/trunk_texture.jpg');
+        this.trunkText.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
+
+        this.leavesText = new CGFappearance(this.scene);
+        this.leavesText.setAmbient(0.5, 0.5, 0.5, 1.0);
+        this.leavesText.setDiffuse(1, 1, 1, 1.0);
+        this.leavesText.setSpecular(1, 1, 1, 1.0);
+        this.leavesText.setShininess(10.0);
+        this.leavesText.loadTexture('textures/leaves_texture.png');
+        this.leavesText.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
     }
 

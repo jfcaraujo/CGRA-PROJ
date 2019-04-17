@@ -11,7 +11,6 @@ class MyScene extends CGFscene {
         super.init(application);
         this.initCameras();
         this.initLights();
-        this.initTextures();
 
         //Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -34,6 +33,7 @@ class MyScene extends CGFscene {
         this.cubeMap = new MyCubeMap(this);
         this.house = new MyHouse(this);
         this.quad = new MyQuad(this);
+        this.floor = new MyFloor(this);
 
         //Objects connected to MyInterface
         this.displayAxis = false;
@@ -41,33 +41,6 @@ class MyScene extends CGFscene {
         this.timeOfDay = 0;
         this.timeIds = {'Day': 0, 'Night': 1};
 
-    }
-
-    initTextures() {
-        this.trunkText = new CGFappearance(this);
-        this.trunkText.setAmbient(1, 1, 1, 1.0);
-        this.trunkText.setDiffuse(1, 1, 1, 1.0);
-        this.trunkText.setSpecular(1, 1, 1, 1.0);
-        this.trunkText.setShininess(10.0);
-        this.trunkText.loadTexture('textures/trunk_texture.jpg');
-        this.trunkText.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
-
-        this.leavesText = new CGFappearance(this);
-        this.leavesText.setAmbient(1, 1, 1, 1.0);
-        this.leavesText.setDiffuse(1, 1, 1, 1.0);
-        this.leavesText.setSpecular(1, 1, 1, 1.0);
-        this.leavesText.setShininess(10.0);
-        this.leavesText.loadTexture('textures/leaves_texture.png');
-        this.leavesText.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
-
-        //quad material top
-        this.quadTop = new CGFappearance(this);
-        this.quadTop.setAmbient(1, 1, 1, 1.0);
-        this.quadTop.setDiffuse(1, 1, 1, 1.0);
-        this.quadTop.setSpecular(1, 1, 1, 1.0);
-        this.quadTop.setShininess(10.0);
-        this.quadTop.loadTexture('textures/mineTop.png');
-        this.quadTop.setTextureWrap('REPEAT', 'REPEAT');
     }
 
     initLights() {
@@ -151,15 +124,11 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        //base
-        this.pushMatrix();
-        this.scale(100, 1, 100);
-        this.rotate(-Math.PI / 2, 1, 0, 0);
-        this.quad.updateTexCoords([0, 100, 100, 100, 0, 0, 100, 0]);
-        this.quadTop.apply();
-        this.quad.display();
-        this.quad.updateTexCoords([0, 1, 1, 1, 0, 0, 1, 0]);
-        this.popMatrix();
+        //floor
+        this.floor.display();
+
+
+        this.treeRow.display();
 
         //house
         this.pushMatrix();
