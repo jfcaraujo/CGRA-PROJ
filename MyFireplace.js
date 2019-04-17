@@ -12,8 +12,8 @@ class MyFireplace extends CGFobject {
     init() {
         //create material
         this.text = new CGFappearance(this.scene);
-        this.text.setAmbient(0.5, 0.5, 0.5, 1.0);
-        this.text.setDiffuse(1, 1, 1, 1.0);
+        this.text.setAmbient(0.5, 0.5, 0, 1.0);
+        this.text.setDiffuse(1, 1, 0, 1.0);
         this.text.setSpecular(0, 0, 0, 1.0);
         this.text.setShininess(10.0);
         this.text.loadTexture('textures/fire2.jpg');

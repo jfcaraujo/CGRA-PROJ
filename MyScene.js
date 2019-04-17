@@ -45,9 +45,11 @@ class MyScene extends CGFscene {
         this.ambientLight = 0.5;
         this.setGlobalAmbientLight(this.ambientLight, this.ambientLight, this.ambientLight, 1.0);
 
-        this.lights[0].setPosition(15, 2, 5, 1);
+        //fireplace
+        this.lights[0].setPosition(7, 0.1, 0, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
-        this.lights[0].disable();
+        this.lights[1].setLinearAttenuation(0.5);
+        this.lights[0].enable();
         this.lights[0].setVisible(true);
         this.lights[0].update();
 
@@ -55,7 +57,7 @@ class MyScene extends CGFscene {
         this.lights[1].setPosition(100, 100, 0, 1);
         this.lights[1].setDiffuse(1.0, 1.0, 0.5, 1.0);
         this.lights[1].setSpecular(1.0, 1.0, 0.5, 1.0);
-        this.lights[1].setLinearAttenuation(0.0001)
+        this.lights[1].setLinearAttenuation(0.0001);
         this.lights[1].enable();
         this.lights[1].setVisible(true);
         this.lights[1].update();
@@ -64,7 +66,7 @@ class MyScene extends CGFscene {
         this.lights[2].setPosition(-100, 100, 0, 1);
         this.lights[2].setDiffuse(0.5, 0.5, 1, 1.0);
         this.lights[2].setSpecular(0.5, 0.5, 1, 1.0);
-        this.lights[2].setLinearAttenuation(0.01)
+        this.lights[2].setLinearAttenuation(0.01);
         this.lights[2].disable();
         this.lights[2].setVisible(true);
         this.lights[2].update();
