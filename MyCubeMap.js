@@ -70,7 +70,7 @@ class MyCubeMap extends CGFobject {
     display() {
 
         this.scene.pushMatrix();
-        this.scene.scale(30, 30, 30);
+        this.scene.scale(300, 300, 300);
         //this.scene.gl.texParameteri(this.scene.gl.TEXTURE_CUBE_MAP, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
         //back
         this.back.apply();

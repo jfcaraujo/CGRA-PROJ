@@ -109,20 +109,23 @@ class MyScene extends CGFscene {
         this.rotate(-Math.PI/2,1,0,0);
         this.quad.display();
         this.popMatrix();
+
         //house
+        this.pushMatrix();
+        this.translate(0,0.01,0);
         this.house.display();
+        this.popMatrix();
+
         //hills
         this.pushMatrix();
-        this.translate(12,0,10);
+        this.translate(12,0.01,10);
         this.hill2.display();
-        this.translate(-22,0,-19);
+        this.translate(-22,0.01,-19);
         this.hill.display();
         this.popMatrix();
+
         //cubemap
-        this.pushMatrix();
-        this.translate(0,15,0);
         this.cubeMap.display();
-        this.popMatrix();
 
         // ---- END Primitive drawing section
     }

@@ -10,12 +10,6 @@ class MyHouse extends CGFobject {
 		this.init();
 	}
 	init() {
-		//create objects
-		this.cube = new MyUnitCubeQuad(this.scene);
-		this.prism = new MyPrism(this.scene,7,3,0.5);
-		this.pyramid = new MyPyramid(this.scene,4);
-		this.quad = new MyQuad(this.scene);
-
 		//create materials
 		this.marbleMaterial = new CGFappearance(this.scene);
 		this.marbleMaterial.setAmbient(0.1, 0.1, 0.1, 1);
@@ -56,11 +50,16 @@ class MyHouse extends CGFobject {
 		this.windowMaterial.setShininess(10.0);
 		this.windowMaterial.loadTexture('textures/Window.png');
 		this.windowMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+		//create objects
+		this.cube = new MyUnitCubeQuad(this.scene,this.whiteWoodMaterial,this.whiteWoodMaterial,this.whiteWoodMaterial);
+		this.prism = new MyPrism(this.scene,7,3,0.5);
+		this.pyramid = new MyPyramid(this.scene,4);
+		this.quad = new MyQuad(this.scene);
 	}
 	
 	display() {
 		// main house walls
-		this.whiteWoodMaterial.apply();
 		this.scene.pushMatrix();
 		this.scene.scale(5,3,12);
 		this.scene.translate(0,0.5,0);
