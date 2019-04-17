@@ -17,7 +17,7 @@ class MyVoxelHill extends CGFobject {
     initTextures() {
         //quad material side
 		this.quadSide = new CGFappearance(this.scene);
-		this.quadSide.setAmbient(0.7, 0.7, 0.7, 1.0);
+		this.quadSide.setAmbient(0.5, 0.5, 0.5, 1.0);
 		this.quadSide.setDiffuse(1, 1, 1, 1.0);
 		this.quadSide.setSpecular(0, 0, 0, 1.0);
 		this.quadSide.setShininess(10.0);
@@ -26,7 +26,7 @@ class MyVoxelHill extends CGFobject {
 
 		//quad material top
 		this.quadTop = new CGFappearance(this.scene);
-		this.quadTop.setAmbient(0.7, 0.7, 0.7, 1);
+		this.quadTop.setAmbient(0.5, 0.5, 0.5, 1);
 		this.quadTop.setDiffuse(1, 1, 1, 1.0);
 		this.quadTop.setSpecular(0, 0, 0, 1.0);
 		this.quadTop.setShininess(10.0);
@@ -35,7 +35,7 @@ class MyVoxelHill extends CGFobject {
 
 		//quad material bottom
 		this.quadBottom = new CGFappearance(this.scene);
-		this.quadBottom.setAmbient(0.7, 0.7, 0.7, 1);
+		this.quadBottom.setAmbient(0.5, 0.5, 0.5, 1);
 		this.quadBottom.setDiffuse(1, 1, 1, 1.0);
 		this.quadBottom.setSpecular(0, 0, 0, 1.0);
 		this.quadBottom.setShininess(10.0);
