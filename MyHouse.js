@@ -12,7 +12,7 @@ class MyHouse extends CGFobject {
 	init() {
 		//create materials
 		this.marbleMaterial = new CGFappearance(this.scene);
-		this.marbleMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+		this.marbleMaterial.setAmbient(0.5, 0.5, 0.5, 1);
 		this.marbleMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
 		this.marbleMaterial.setSpecular(0.1, 0.1, 0.1, 1);
 		this.marbleMaterial.setShininess(10.0);
@@ -20,7 +20,7 @@ class MyHouse extends CGFobject {
 		this.marbleMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
 		this.blueTiledRoofMaterial = new CGFappearance(this.scene);
-		this.blueTiledRoofMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+		this.blueTiledRoofMaterial.setAmbient(0.5, 0.5, 0.5, 1);
 		this.blueTiledRoofMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
 		this.blueTiledRoofMaterial.setSpecular(0.1, 0.1, 0.1, 1);
 		this.blueTiledRoofMaterial.setShininess(10.0);
@@ -28,7 +28,7 @@ class MyHouse extends CGFobject {
 		this.blueTiledRoofMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
 		this.whiteWoodMaterial = new CGFappearance(this.scene);
-		this.whiteWoodMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+		this.whiteWoodMaterial.setAmbient(0.5, 0.5, 0.5, 1);
 		this.whiteWoodMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
 		this.whiteWoodMaterial.setSpecular(0.1, 0.1, 0.1, 1);
 		this.whiteWoodMaterial.setShininess(10.0);
@@ -36,7 +36,7 @@ class MyHouse extends CGFobject {
 		this.whiteWoodMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
 		this.doorMAterial = new CGFappearance(this.scene);
-		this.doorMAterial.setAmbient(0.1, 0.1, 0.1, 1);
+		this.doorMAterial.setAmbient(0.5, 0.5, 0.5, 1);
 		this.doorMAterial.setDiffuse(0.9, 0.9, 0.9, 1);
 		this.doorMAterial.setSpecular(0.1, 0.1, 0.1, 1);
 		this.doorMAterial.setShininess(10.0);
@@ -44,7 +44,7 @@ class MyHouse extends CGFobject {
 		this.doorMAterial.setTextureWrap('REPEAT', 'REPEAT');
 
 		this.windowMaterial = new CGFappearance(this.scene);
-		this.windowMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+		this.windowMaterial.setAmbient(0.5, 0.5, 0.5, 1);
 		this.windowMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
 		this.windowMaterial.setSpecular(0.1, 0.1, 0.1, 1);
 		this.windowMaterial.setShininess(10.0);

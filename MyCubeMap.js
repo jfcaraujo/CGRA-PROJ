@@ -19,48 +19,48 @@ class MyCubeMap extends CGFobject {
     initTextures() {
         this.top = new CGFappearance(this.scene);
         this.top.setAmbient(1, 1, 1, 1.0);
-        this.top.setDiffuse(1, 1, 1, 1.0);
-        this.top.setSpecular(1, 1, 1, 1.0);
+        this.top.setDiffuse(0, 0, 0, 1.0);
+        this.top.setSpecular(0, 0, 0, 1.0);
         this.top.setShininess(10.0);
         this.top.loadTexture('textures/powderpeak_up.png');
         this.top.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.bottom = new CGFappearance(this.scene);
         this.bottom.setAmbient(1, 1, 1, 1.0);
-        this.bottom.setDiffuse(1, 1, 1, 1.0);
-        this.bottom.setSpecular(1, 1, 1, 1.0);
+        this.bottom.setDiffuse(0, 0, 0, 1.0);
+        this.bottom.setSpecular(0, 0, 0, 1.0);
         this.bottom.setShininess(10.0);
         this.bottom.loadTexture('textures/powderpeak_dn.png');
         this.bottom.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.front = new CGFappearance(this.scene);
         this.front.setAmbient(1, 1, 1, 1.0);
-        this.front.setDiffuse(1, 1, 1, 1.0);
-        this.front.setSpecular(1, 1, 1, 1.0);
+        this.front.setDiffuse(0, 0, 0, 1.0);
+        this.front.setSpecular(0, 0, 0, 1.0);
         this.front.setShininess(10.0);
         this.front.loadTexture('textures/powderpeak_ft.png');
         this.front.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.back = new CGFappearance(this.scene);
         this.back.setAmbient(1, 1, 1, 1.0);
-        this.back.setDiffuse(1, 1, 1, 1.0);
-        this.back.setSpecular(1, 1, 1, 1.0);
+        this.back.setDiffuse(0, 0, 0, 1.0);
+        this.back.setSpecular(0, 0, 0, 1.0);
         this.back.setShininess(10.0);
         this.back.loadTexture('textures/powderpeak_bk.png');
         this.back.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.left = new CGFappearance(this.scene);
         this.left.setAmbient(1, 1, 1, 1.0);
-        this.left.setDiffuse(1, 1, 1, 1.0);
-        this.left.setSpecular(1, 1, 1, 1.0);
+        this.left.setDiffuse(0, 0, 0, 1.0);
+        this.left.setSpecular(0, 0, 0, 1.0);
         this.left.setShininess(10.0);
         this.left.loadTexture('textures/powderpeak_lf.png');
         this.left.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.right = new CGFappearance(this.scene);
         this.right.setAmbient(1, 1, 1, 1.0);
-        this.right.setDiffuse(1, 1, 1, 1.0);
-        this.right.setSpecular(1, 1, 1, 1.0);
+        this.right.setDiffuse(0, 0, 0, 1.0);
+        this.right.setSpecular(0, 0, 0, 1.0);
         this.right.setShininess(10.0);
         this.right.loadTexture('textures/powderpeak_rt.png');
         this.right.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
