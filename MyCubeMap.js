@@ -22,7 +22,7 @@ class MyCubeMap extends CGFobject {
         this.top.setDiffuse(1, 1, 1, 1.0);
         this.top.setSpecular(1, 1, 1, 1.0);
         this.top.setShininess(10.0);
-        this.top.loadTexture('Images/powderpeak_up.png');
+        this.top.loadTexture('textures/powderpeak_up.png');
         this.top.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.bottom = new CGFappearance(this.scene);
@@ -30,7 +30,7 @@ class MyCubeMap extends CGFobject {
         this.bottom.setDiffuse(1, 1, 1, 1.0);
         this.bottom.setSpecular(1, 1, 1, 1.0);
         this.bottom.setShininess(10.0);
-        this.bottom.loadTexture('Images/powderpeak_dn.png');
+        this.bottom.loadTexture('textures/powderpeak_dn.png');
         this.bottom.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.front = new CGFappearance(this.scene);
@@ -38,7 +38,7 @@ class MyCubeMap extends CGFobject {
         this.front.setDiffuse(1, 1, 1, 1.0);
         this.front.setSpecular(1, 1, 1, 1.0);
         this.front.setShininess(10.0);
-        this.front.loadTexture('Images/powderpeak_ft.png');
+        this.front.loadTexture('textures/powderpeak_ft.png');
         this.front.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.back = new CGFappearance(this.scene);
@@ -46,7 +46,7 @@ class MyCubeMap extends CGFobject {
         this.back.setDiffuse(1, 1, 1, 1.0);
         this.back.setSpecular(1, 1, 1, 1.0);
         this.back.setShininess(10.0);
-        this.back.loadTexture('Images/powderpeak_bk.png');
+        this.back.loadTexture('textures/powderpeak_bk.png');
         this.back.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.left = new CGFappearance(this.scene);
@@ -54,7 +54,7 @@ class MyCubeMap extends CGFobject {
         this.left.setDiffuse(1, 1, 1, 1.0);
         this.left.setSpecular(1, 1, 1, 1.0);
         this.left.setShininess(10.0);
-        this.left.loadTexture('Images/powderpeak_lf.png');
+        this.left.loadTexture('textures/powderpeak_lf.png');
         this.left.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         this.right = new CGFappearance(this.scene);
@@ -62,7 +62,7 @@ class MyCubeMap extends CGFobject {
         this.right.setDiffuse(1, 1, 1, 1.0);
         this.right.setSpecular(1, 1, 1, 1.0);
         this.right.setShininess(10.0);
-        this.right.loadTexture('Images/powderpeak_rt.png');
+        this.right.loadTexture('textures/powderpeak_rt.png');
         this.right.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
     }
@@ -70,7 +70,7 @@ class MyCubeMap extends CGFobject {
     display() {
 
         this.scene.pushMatrix();
-        this.scene.scale(30, 30, 30);
+        this.scene.scale(300, 300, 300);
         //this.scene.gl.texParameteri(this.scene.gl.TEXTURE_CUBE_MAP, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
         //back
         this.back.apply();
@@ -126,12 +126,12 @@ class MyCubeMap extends CGFobject {
     dayMode() {
         if (!this.day) {
             this.day = true;
-            this.top.loadTexture('Images/powderpeak_up.png');
-            this.bottom.loadTexture('Images/powderpeak_dn.png');
-            this.front.loadTexture('Images/powderpeak_ft.png');
-            this.back.loadTexture('Images/powderpeak_bk.png');
-            this.left.loadTexture('Images/powderpeak_lf.png');
-            this.right.loadTexture('Images/powderpeak_rt.png');
+            this.top.loadTexture('textures/powderpeak_up.png');
+            this.bottom.loadTexture('textures/powderpeak_dn.png');
+            this.front.loadTexture('textures/powderpeak_ft.png');
+            this.back.loadTexture('textures/powderpeak_bk.png');
+            this.left.loadTexture('textures/powderpeak_lf.png');
+            this.right.loadTexture('textures/powderpeak_rt.png');
         }
 
     }
@@ -139,12 +139,12 @@ class MyCubeMap extends CGFobject {
     nightMode() {
         if (this.day) {
             this.day = false;
-            this.top.loadTexture('Images/snowy_up.png');
-            this.bottom.loadTexture('Images/snowy_dn.png');
-            this.front.loadTexture('Images/snowy_ft.png');
-            this.back.loadTexture('Images/snowy_bk.png');
-            this.left.loadTexture('Images/snowy_lf.png');
-            this.right.loadTexture('Images/snowy_rt.png');
+            this.top.loadTexture('textures/snowy_up.png');
+            this.bottom.loadTexture('textures/snowy_dn.png');
+            this.front.loadTexture('textures/snowy_ft.png');
+            this.back.loadTexture('textures/snowy_bk.png');
+            this.left.loadTexture('textures/snowy_lf.png');
+            this.right.loadTexture('textures/snowy_rt.png');
         }
     }
 

@@ -6,13 +6,46 @@
 class MyVoxelHill extends CGFobject {
 	constructor(scene,levels) {
         super(scene);
+
         this.scene = scene;
         this.levels = levels;
+
+        this.initTextures();
 		this.init();
-	}
+    }
+    
+    initTextures() {
+        //quad material side
+		this.quadSide = new CGFappearance(this.scene);
+		this.quadSide.setAmbient(1, 1, 1, 1.0);
+		this.quadSide.setDiffuse(1, 1, 1, 1.0);
+		this.quadSide.setSpecular(1, 1, 1, 1.0);
+		this.quadSide.setShininess(10.0);
+		this.quadSide.loadTexture('textures/mineSide.png');
+		this.quadSide.setTextureWrap('REPEAT', 'REPEAT');
+
+		//quad material top
+		this.quadTop = new CGFappearance(this.scene);
+		this.quadTop.setAmbient(1, 1, 1, 1.0);
+		this.quadTop.setDiffuse(1, 1, 1, 1.0);
+		this.quadTop.setSpecular(1, 1, 1, 1.0);
+		this.quadTop.setShininess(10.0);
+		this.quadTop.loadTexture('textures/mineTop.png');
+		this.quadTop.setTextureWrap('REPEAT', 'REPEAT');
+
+		//quad material bottom
+		this.quadBottom = new CGFappearance(this.scene);
+		this.quadBottom.setAmbient(1, 1, 1, 1.0);
+		this.quadBottom.setDiffuse(1, 1, 1, 1.0);
+		this.quadBottom.setSpecular(1, 1, 1, 1.0);
+		this.quadBottom.setShininess(10.0);
+		this.quadBottom.loadTexture('textures/mineBottom.png');
+		this.quadBottom.setTextureWrap('REPEAT', 'REPEAT');
+    }
+
 	init() {
 		//create objects
-		this.cube = new MyUnitCubeQuad(this.scene);
+		this.cube = new MyUnitCubeQuad(this.scene,this.quadTop,this.quadSide,this.quadBottom);
 	}
 	
 	display() {
