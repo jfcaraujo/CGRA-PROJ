@@ -25,6 +25,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this)
         this.hill = new MyVoxelHill(this, 5);
         this.hill2 = new MyVoxelHill(this, 4);
+        // this.hill3 = new MyVoxelHill(this,6);
         this.fireplace = new MyFireplace(this);
         this.treeGroup = new MyTreeGroupPatch(this);
         this.treeRow = new MyTreeRowPatch(this);
@@ -49,8 +50,8 @@ class MyScene extends CGFscene {
         this.lights[0].setPosition(15, 0.1, 0, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 0.5, 1.0);
         this.lights[1].setLinearAttenuation(0.5);
-        this.lights[0].enable();
-        this.lights[0].setVisible(true);
+        this.lights[0].disable();
+        // this.lights[0].setVisible(true);
         this.lights[0].update();
 
         //the sun
@@ -59,7 +60,7 @@ class MyScene extends CGFscene {
         this.lights[1].setSpecular(1.0, 1.0, 0.5, 1.0);
         this.lights[1].setLinearAttenuation(0.0001);
         this.lights[1].enable();
-        this.lights[1].setVisible(true);
+        // this.lights[1].setVisible(true);
         this.lights[1].update();
 
         //the moon
@@ -68,12 +69,12 @@ class MyScene extends CGFscene {
         this.lights[2].setSpecular(0.5, 0.5, 1, 1.0);
         this.lights[2].setLinearAttenuation(0.01);
         this.lights[2].disable();
-        this.lights[2].setVisible(true);
+        // this.lights[2].setVisible(true);
         this.lights[2].update();
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(100, 10, -60), vec3.fromValues(0, 10, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(125, 40, -30), vec3.fromValues(0, -3, 0));
     }
 
     setDefaultAppearance() {
@@ -132,17 +133,40 @@ class MyScene extends CGFscene {
 
         //treegroup
         this.pushMatrix();
-        this.translate(0, 0, 25);
+        this.translate(-4, 0, 19);
         this.treeGroup.display();
-        this.translate(7, 0, 15);
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-23, 0, -4);
+        this.treeGroup.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-41,0.1,19);
         this.treeGroup.display();
         this.popMatrix();
 
         //treerow
         this.pushMatrix();
-        this.translate(35, 0, -13);
+        this.translate(35, 0.1, -13);
         this.treeRow.display();
-        this.translate(10, 0, 0);
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(25, 0.1, 0);
+        this.treeRow.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.rotate(Math.PI/2,0,1,0);
+        this.translate(35,0.1,-37);
+        this.treeRow.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.rotate(Math.PI/2,0,1,0);
+        this.translate(39,0.1,3);
         this.treeRow.display();
         this.popMatrix();
 
@@ -154,16 +178,24 @@ class MyScene extends CGFscene {
 
         //fireplace
         this.pushMatrix();
-        this.translate(15, 0, 0);
+        this.translate(15, 0.01, 0);
         this.fireplace.display();
         this.popMatrix();
 
         //hills
         this.pushMatrix();
-        this.translate(12, 0.01, 10);
+        this.translate(16, 0.01, 10);
         this.hill2.display();
+        this.popMatrix();
+
+        this.pushMatrix();
         this.translate(-22, 0.01, -19);
         this.hill.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-20,0.01,28);
+        this.hill2.display();
         this.popMatrix();
 
         //cubemap
