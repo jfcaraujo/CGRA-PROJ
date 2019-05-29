@@ -7,6 +7,9 @@ class MyBird extends CGFobject {
     constructor(scene) {
         super(scene);
         this.scene = scene;
+        this.orientation = 0;
+        this.speed = 0;
+        this.position = [0, 3, 0];
         this.init();
     }
     init() {
@@ -31,6 +34,10 @@ class MyBird extends CGFobject {
         this.cylinder = new MyCylinder(this.scene, 5, 0.1, 0.15);
     }
 
+    setPosition(position){
+        this.position=position;
+    }
+
     display() {
         /*this.scene.pushMatrix();
         this.scene.translate(0, 0, -0.5);
@@ -40,8 +47,9 @@ class MyBird extends CGFobject {
         this.scene.popMatrix();*/
 
         this.scene.pushMatrix();
-
         this.scene.scale(0.6, 0.65, 0.6);
+        this.scene.translate(0, 4, 1.3);
+
         this.scene.pushMatrix();
         this.sphere.display();//head
         this.scene.scale(1, 1, 1.3);
