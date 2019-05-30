@@ -10,6 +10,7 @@ class MyScene extends CGFscene {
         super.init(application);
         this.initCameras();
         this.initLights();
+        this.initBranches();
 
         //Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -23,7 +24,7 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.plane = new Plane(this, 32);
+        this.terrain = new MyTerrain(this, 32);
         this.bird = new MyBird(this);
 
         //Objects connected to MyInterface
@@ -47,6 +48,25 @@ class MyScene extends CGFscene {
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
+    }
+    getRandomPos() {
+        return Math.random() * 21 - 10;
+    }
+    getRandomRot() {
+        return Math.random() * 2*Math.PI;
+    }
+    initBranches() {
+        this.branches = [
+            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot()),
+            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot()),
+            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot()),
+            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot())
+        ];
+    }
+    displayBranches() {
+        for (var i = 0; i < 4; i++) {
+            this.branches[i].display();
+        }
     }
     checkKeys() {
         var text = "Keys pressed: ";
@@ -118,14 +138,19 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
+        if (this.displayBird) {
+            this.bird.display();
+        }
+
         this.pushMatrix();
         this.rotate(-0.5 * Math.PI, 1, 0, 0);
         this.scale(60, 60, 1);
         if (this.displayPlane)
-            this.plane.display();
+            this.terrain.display();
         this.popMatrix();
-        if (this.displayBird)
-            this.bird.display();
+
+        this.displayBranches();
+        
         // ---- END Primitive drawing section
     }
 }
