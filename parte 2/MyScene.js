@@ -23,9 +23,15 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.plane = new MyTerrain(this);
+        this.terrain = new MyTerrain(this, 32);
+        this.bird = new MyBird(this);
 
         //Objects connected to MyInterface
+        this.displayAxis = true;
+        this.displayPlane = false;
+        this.displayBird = true;
+        this.speedFactor = 1;
+        this.scaleFactor = 1;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -42,6 +48,59 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
+<<<<<<< HEAD
+=======
+    checkKeys() {
+        var text = "Keys pressed: ";
+        var keysPressed = false;
+        // Check for key codes e.g. in ​https://keycode.info/
+        if (this.gui.isKeyPressed("KeyW")) {
+            text += " W ";
+            keysPressed = true;
+            this.bird.accelerate(1);
+        }
+        if (this.gui.isKeyPressed("KeyA")) {
+            text += " A ";
+            keysPressed = true;
+            this.bird.turn(1);
+        }
+        if (this.gui.isKeyPressed("KeyS")) {
+            text += " S ";
+            keysPressed = true;
+            this.bird.accelerate(-1);
+        }
+        if (this.gui.isKeyPressed("KeyD")) {
+            text += " D ";
+            keysPressed = true;
+            this.bird.turn(-1);
+        }
+        if (this.gui.isKeyPressed("KeyR")) {
+            text += " R ";
+            keysPressed = true;
+            this.bird.reset();
+        }
+        if (this.gui.isKeyPressed("KeyP")) {
+            text += " P ";
+            keysPressed = true;
+        }
+        if (keysPressed)
+            console.log(text);
+    }
+
+    update(t) {
+        this.checkKeys();
+        this.bird.updatePosition();
+
+    }
+
+    setSpeedFactor() {
+        this.bird.setSpeedFactor(this.speedFactor);
+    }
+
+    setScaleFactor() {
+        this.bird.setScaleFactor(this.scaleFactor);
+    }
+>>>>>>> 11aefef68784479c38766226f6b3fd62bcda57a9
 
     display() {
         // ---- BEGIN Background, camera and axis setup
@@ -55,17 +114,21 @@ class MyScene extends CGFscene {
         this.applyViewMatrix();
 
         // Draw axis
-        this.axis.display();
+        if (this.displayAxis)
+            this.axis.display();
 
         //Apply default appearance
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
         this.pushMatrix();
-        this.rotate(-0.5*Math.PI, 1, 0, 0);
+        this.rotate(-0.5 * Math.PI, 1, 0, 0);
         this.scale(60, 60, 1);
-        this.plane.display();
+        if (this.displayPlane)
+            this.terrain.display();
         this.popMatrix();
+        if (this.displayBird)
+            this.bird.display();
         // ---- END Primitive drawing section
     }
 }
