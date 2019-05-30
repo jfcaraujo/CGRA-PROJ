@@ -49,15 +49,18 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
-    getRandom() {
+    getRandomPos() {
         return Math.random() * 21 - 10;
+    }
+    getRandomRot() {
+        return Math.random() * 2*Math.PI;
     }
     initBranches() {
         this.branches = [
-            new MyTreeBranch(this,this.getRandom(), this.getRandom(),2),
-            new MyTreeBranch(this,this.getRandom(), this.getRandom(),2),
-            new MyTreeBranch(this,this.getRandom(), this.getRandom(),2),
-            new MyTreeBranch(this,this.getRandom(), this.getRandom(),2)
+            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot()),
+            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot()),
+            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot()),
+            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot())
         ];
     }
     displayBranches() {
