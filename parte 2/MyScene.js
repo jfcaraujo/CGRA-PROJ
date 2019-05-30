@@ -23,7 +23,7 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.plane = new Plane(this, 32);
+        this.plane = new MyTerrain(this);
 
         //Objects connected to MyInterface
     }
@@ -41,9 +41,6 @@ class MyScene extends CGFscene {
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
-    }
-    update(t){
-
     }
 
     display() {
