@@ -20,6 +20,7 @@ serialInclude([
         'MySphere.js', 
         'MyTriangle.js',
         'MyTerrain.js',
+        'MyTreeBranch.js',
 
     main = function () {
         var app = new CGFapplication(document.body);

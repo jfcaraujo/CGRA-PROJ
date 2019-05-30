@@ -10,6 +10,7 @@ class MyScene extends CGFscene {
         super.init(application);
         this.initCameras();
         this.initLights();
+        this.initBranches();
 
         //Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -47,6 +48,22 @@ class MyScene extends CGFscene {
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
+    }
+    getRandom() {
+        return Math.random() * 21 - 10;
+    }
+    initBranches() {
+        this.branches = [
+            new MyTreeBranch(this,this.getRandom(), this.getRandom(),2),
+            new MyTreeBranch(this,this.getRandom(), this.getRandom(),2),
+            new MyTreeBranch(this,this.getRandom(), this.getRandom(),2),
+            new MyTreeBranch(this,this.getRandom(), this.getRandom(),2)
+        ];
+    }
+    displayBranches() {
+        for (var i = 0; i < 4; i++) {
+            this.branches[i].display();
+        }
     }
     checkKeys() {
         var text = "Keys pressed: ";
@@ -128,6 +145,8 @@ class MyScene extends CGFscene {
         if (this.displayPlane)
             this.terrain.display();
         this.popMatrix();
+
+        this.displayBranches();
         
         // ---- END Primitive drawing section
     }
