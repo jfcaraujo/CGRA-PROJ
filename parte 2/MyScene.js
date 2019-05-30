@@ -48,8 +48,6 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
-<<<<<<< HEAD
-=======
     checkKeys() {
         var text = "Keys pressed: ";
         var keysPressed = false;
@@ -100,7 +98,6 @@ class MyScene extends CGFscene {
     setScaleFactor() {
         this.bird.setScaleFactor(this.scaleFactor);
     }
->>>>>>> 11aefef68784479c38766226f6b3fd62bcda57a9
 
     display() {
         // ---- BEGIN Background, camera and axis setup
@@ -121,14 +118,17 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
+        if (this.displayBird) {
+            this.bird.display();
+        }
+
         this.pushMatrix();
         this.rotate(-0.5 * Math.PI, 1, 0, 0);
         this.scale(60, 60, 1);
         if (this.displayPlane)
             this.terrain.display();
         this.popMatrix();
-        if (this.displayBird)
-            this.bird.display();
+        
         // ---- END Primitive drawing section
     }
 }
