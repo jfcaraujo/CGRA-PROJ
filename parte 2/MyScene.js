@@ -30,6 +30,8 @@ class MyScene extends CGFscene {
         this.displayAxis = true;
         this.displayPlane = false;
         this.displayBird = true;
+        this.speedFactor = 1;
+        this.scaleFactor = 1;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -53,25 +55,48 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text += " W ";
             keysPressed = true;
+            this.bird.accelerate(1);
         }
         if (this.gui.isKeyPressed("KeyA")) {
             text += " A ";
             keysPressed = true;
+            this.bird.turn(1);
         }
         if (this.gui.isKeyPressed("KeyS")) {
             text += " S ";
             keysPressed = true;
+            this.bird.accelerate(-1);
         }
         if (this.gui.isKeyPressed("KeyD")) {
             text += " D ";
+            keysPressed = true;
+            this.bird.turn(-1);
+        }
+        if (this.gui.isKeyPressed("KeyR")) {
+            text += " R ";
+            keysPressed = true;
+            this.bird.reset();
+        }
+        if (this.gui.isKeyPressed("KeyP")) {
+            text += " P ";
             keysPressed = true;
         }
         if (keysPressed)
             console.log(text);
     }
+
     update(t) {
         this.checkKeys();
-        
+        this.bird.updatePosition();
+
+    }
+
+    setSpeedFactor() {
+        this.bird.setSpeedFactor(this.speedFactor);
+    }
+
+    setScaleFactor() {
+        this.bird.setScaleFactor(this.scaleFactor);
     }
 
     display() {

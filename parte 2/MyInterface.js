@@ -18,6 +18,8 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayAxis').name("Display axis");
         this.gui.add(this.scene, 'displayPlane').name("Display Plane");
         this.gui.add(this.scene, 'displayBird').name("Display Bird");
+        this.gui.add(this.scene, 'speedFactor', 0.1, 3.0).name('Speed Factor').onChange(this.scene.setSpeedFactor.bind(this.scene));
+        this.gui.add(this.scene, 'scaleFactor', 0.5, 3.0).name('Scale Factor').onChange(this.scene.setScaleFactor.bind(this.scene));
 
         this.initKeys();
         return true;

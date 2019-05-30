@@ -10,6 +10,8 @@ class MyBird extends CGFobject {
         this.orientation = 0;
         this.speed = 0;
         this.position = [0, 3, 0];
+        this.scaleFactor = 1;
+        this.speedFactor = 1;
         this.init();
     }
     init() {
@@ -34,21 +36,50 @@ class MyBird extends CGFobject {
         this.cylinder = new MyCylinder(this.scene, 5, 0.1, 0.15);
     }
 
-    setPosition(position){
-        this.position=position;
+    updatePosition() {
+        this.position =
+            [this.position[0] + this.speed * this.speedFactor * Math.sin(this.orientation),
+            this.position[1],
+            this.position[2] + this.speed * this.speedFactor * Math.cos(this.orientation)];
+    }
+
+    turn(v) {
+        this.orientation = this.orientation + this.speedFactor * (v * Math.PI * 10 / 180);
+    }
+
+    accelerate(v) {
+        this.speed = this.speed + 0.1 * v;
+        if (this.speed > 2) this.speed = 2;
+    }
+
+    setScaleFactor(scale) {
+        this.scaleFactor = scale;
+    }
+
+    setSpeedFactor(speedFactor) {
+        this.speedFactor = speedFactor;
+    }
+
+    reset() {
+        this.position = [0, 3, 0];
+        this.orientation = 0;
+        this.speed = 0;
     }
 
     display() {
         /*this.scene.pushMatrix();
-        this.scene.translate(0, 0, -0.5);
-        this.scene.scale(2, 2, 2);
-        this.scene.rotate(Math.PI / 2, 1, 0, 0);
+        this.scene.translate(0, 1.5, 0);
+        this.scene.scale(3, 3, 3);
+        //this.scene.rotate(Math.PI / 2, 1, 0, 0);
         this.quad.display();//test size
         this.scene.popMatrix();*/
 
         this.scene.pushMatrix();
-        this.scene.scale(0.6, 0.65, 0.6);
-        this.scene.translate(0, 4, 1.3);
+        this.scene.translate(...this.position);//move bird
+        this.scene.rotate(this.orientation, 0, 1, 0);//rotate bird
+        this.scene.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);//scale bird
+        this.scene.scale(0.6, 0.65, 0.6);//default scale
+        this.scene.translate(0, 1, 1.3);//default position
 
         this.scene.pushMatrix();
         this.sphere.display();//head
