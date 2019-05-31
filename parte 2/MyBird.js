@@ -128,7 +128,7 @@ class MyBird extends CGFobject {
 
         this.scene.pushMatrix();
         this.scene.translate(0.17, 0.18, -0.25);
-        this.scene.rotate(Math.PI /* * 3 / 4*/, 0, 0, 1);
+        this.scene.rotate(Math.PI, 0, 0, 1);
         this.scene.rotate(-Math.PI / 2, 0, 1, 0);
         this.triangle.display();//left wing triangle
         this.scene.popMatrix();
@@ -154,6 +154,7 @@ class MyBird extends CGFobject {
         this.scene.rotate(-Math.PI / 2, 0, 0, 1);
         this.cylinder.display();//left eye
         this.scene.popMatrix();
+        
         this.scene.pushMatrix();
         this.yellow.apply();
         this.scene.translate(0, 0, 0.6);
