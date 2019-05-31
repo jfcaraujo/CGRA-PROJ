@@ -38,7 +38,7 @@ class MyNest extends CGFobject {
         this.scene.translate(this.coordX,this.height,this.coordY);
 
         for (var ang = 0; ang < 2*Math.PI; ang += Math.PI/6) {
-            for (var h = 0; h < 1; h+=0.1) {
+            for (var h = 0; h < 1; h+=0.2) {
                 this.displaySingleBranchWall(ang,h);
             }
         }
