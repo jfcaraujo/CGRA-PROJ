@@ -14,7 +14,8 @@ class MyBird extends CGFobject {
         this.position = [0, 3, 0];
         this.scaleFactor = 1;
         this.speedFactor = 1;
-
+        this.descending = false;
+        this.descendingStart = 0;
         this.branch = null;
 
         this.init();
@@ -56,8 +57,21 @@ class MyBird extends CGFobject {
         this.wingsAngle = Math.PI * 50 * (1 + Math.sin(Math.PI * t * this.speedFactor * (1 + this.speed) / 500)) / 2 / 180;//alterna entre 0 e 30 graus e converte para radianos, 1 segundo para um ciclo completo
         this.position =
             [this.position[0] + this.speed * this.speedFactor * Math.sin(this.orientation),
-            this.position[1] + ((Math.sin(Math.PI * t/* * this.speedFactor*/ / 500)) / 2) - this.previousYDiff,
+            this.position[1],
             this.position[2] + this.speed * this.speedFactor * Math.cos(this.orientation)];
+        if (this.descending == false)
+            this.position[1] += ((Math.sin(Math.PI * t/* * this.speedFactor*/ / 500)) / 2) - this.previousYDiff;
+        else {
+            if ((this.descendingStart) = 0)
+                this.descendingStart = t;
+            else
+                this.position[1] = this.position[1] + Math.cos(Math.PI * (t - this.descendingStart) / 500) - Math.cos(Math.PI * (t - this.descendingStart - 50) / 500);
+        }
+        if ((t - this.descendingStart) > 2000 && this.descending == true) {
+            this.descending = false;
+            this.position[1] = 3 + this.previousYDiff;
+            this.descendingStart = 0;
+        }
         this.previousYDiff = ((Math.sin(Math.PI * t /* * this.speedFactor*/ / 500)) / 2);
 
     }
@@ -87,6 +101,12 @@ class MyBird extends CGFobject {
         this.position = [0, 3 + this.previousYDiff, 0];
         this.orientation = 0;
         this.speed = 0;
+        this.descending = false;
+        this.descendingStart = 0;
+    }
+
+    descend() {
+        this.descending = true;
     }
 
     display() {

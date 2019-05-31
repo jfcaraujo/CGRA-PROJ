@@ -37,7 +37,7 @@ class MyCylinder extends CGFobject {
         for (var i = 0; i <= this.slices; i++) {
             this.vertices.push(this.radius * Math.cos(ang), 0, -Math.sin(ang) * this.radius);
             if (i > 2) {
-                this.indices.push(x + this.slices,x + i - 1, x + i - 2);//verificar ordem
+                this.indices.push(x + this.slices, x + i - 1, x + i - 2);//verificar ordem
             }
             this.normals.push(0, -1, 0);
             this.texCoords.push(0.5 + 0.5 * Math.cos(ang), 0.5 + 0.5 * -Math.sin(ang));
@@ -47,7 +47,7 @@ class MyCylinder extends CGFobject {
         for (var i = 0; i <= this.slices; i++) {
             this.vertices.push(this.radius * Math.cos(ang), this.height, -Math.sin(ang) * this.radius);
             if (i > 2) {
-                this.indices.push(x + i - 2, x + i - 1,x + this.slices);//verificar ordem
+                this.indices.push(x + i - 2, x + i - 1, x + this.slices);//verificar ordem
             }
             this.normals.push(0, 1, 0);
             this.texCoords.push(0.5 + 0.5 * Math.cos(ang), 0.5 + 0.5 * -Math.sin(ang));

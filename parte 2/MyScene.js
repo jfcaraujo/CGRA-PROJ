@@ -26,7 +26,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.terrain = new MyTerrain(this, 32);
         this.bird = new MyBird(this);
-        this.nest = new MyNest(this,2,5,5);
+        this.nest = new MyNest(this, 2, 5, 5);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -54,14 +54,14 @@ class MyScene extends CGFscene {
         return Math.random() * 21 - 10;
     }
     getRandomRot() {
-        return Math.random() * 2*Math.PI;
+        return Math.random() * 2 * Math.PI;
     }
     initBranches() {
         this.branches = [
-            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot()),
-            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot()),
-            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot()),
-            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot())
+            new MyTreeBranch(this, this.getRandomPos(), this.getRandomPos(), 2, this.getRandomRot()),
+            new MyTreeBranch(this, this.getRandomPos(), this.getRandomPos(), 2, this.getRandomRot()),
+            new MyTreeBranch(this, this.getRandomPos(), this.getRandomPos(), 2, this.getRandomRot()),
+            new MyTreeBranch(this, this.getRandomPos(), this.getRandomPos(), 2, this.getRandomRot())
         ];
     }
     displayBranches() {
@@ -101,9 +101,10 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyP")) {
             text += " P ";
             keysPressed = true;
+            this.bird.descend();
         }
         if (keysPressed)
-            console.log(text);
+            console.log(text+this.bird.descendingStart+this.bird.descending);
     }
 
     update(t) {
@@ -153,7 +154,7 @@ class MyScene extends CGFscene {
         this.displayBranches();
 
         this.nest.display();
-        
+
         // ---- END Primitive drawing section
     }
 }
