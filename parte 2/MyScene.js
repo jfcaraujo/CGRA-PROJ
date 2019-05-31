@@ -26,6 +26,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.terrain = new MyTerrain(this, 32);
         this.bird = new MyBird(this);
+        this.nest = new MyNest(this,2,5,5);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -150,6 +151,8 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         this.displayBranches();
+
+        this.nest.display();
         
         // ---- END Primitive drawing section
     }

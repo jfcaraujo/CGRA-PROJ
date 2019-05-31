@@ -14,6 +14,9 @@ class MyBird extends CGFobject {
         this.position = [0, 3, 0];
         this.scaleFactor = 1;
         this.speedFactor = 1;
+
+        this.branch = null;
+
         this.init();
     }
     init() {
@@ -35,7 +38,12 @@ class MyBird extends CGFobject {
         this.quad = new MyQuad(this.scene);
         this.triangle = new MyTriangle(this.scene);
         this.pyramid = new MyPyramid(this.scene, 4);
-        this.cylinder = new MyCylinder(this.scene, 5, 0.1, 0.15);
+        this.cylinder = new MyCylinder(this.scene, 5, 0.1, 0.1);
+        this.legCylinder = new MyCylinder(this.scene,5,0.5,0.1);
+    }
+
+    setBranch(branch) {
+        this.branch = branch;
     }
 
     updatePosition(t) {
@@ -161,6 +169,13 @@ class MyBird extends CGFobject {
         this.scene.rotate(Math.PI / 2, 1, 0, 0);
         this.scene.scale(0.25, 0.25, 0.25);
         this.pyramid.display();//beak
+        this.scene.popMatrix();
+
+        //leg
+        this.yellow.apply();
+        this.scene.pushMatrix();
+        this.scene.translate(0.3,-1.5,-1.25);
+        this.legCylinder.display();
         this.scene.popMatrix();
 
         this.scene.popMatrix();
