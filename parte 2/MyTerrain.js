@@ -33,7 +33,7 @@ class MyTerrain extends CGFobject {
         this.altimetryTexture.bind(2);
 
         this.terrainTexture.apply();
-        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
+       // this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
         this.scene.setActiveShader(this.shader);
         this.plane.display();
         this.scene.setActiveShader(this.scene.defaultShader); 

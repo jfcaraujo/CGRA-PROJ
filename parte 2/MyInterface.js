@@ -15,7 +15,7 @@ class MyInterface extends CGFinterface {
         this.gui = new dat.GUI();
 
         var obj = this;
-        this.gui.add(this.scene, 'displayAxis').name("Display axis");
+        this.gui.add(this.scene, 'displayAxis').name("Display Axis");
         this.gui.add(this.scene, 'displayPlane').name("Display Plane");
         this.gui.add(this.scene, 'displayBird').name("Display Bird");
         this.gui.add(this.scene, 'speedFactor', 0.1, 3.0).name('Speed Factor').onChange(this.scene.setSpeedFactor.bind(this.scene));

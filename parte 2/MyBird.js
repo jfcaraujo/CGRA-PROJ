@@ -33,13 +33,19 @@ class MyBird extends CGFobject {
         this.yellow.setSpecular(1, 1, 0, 1);
         this.yellow.setShininess(10.0);
 
+        this.red = new CGFappearance(this.scene);
+        this.red.setAmbient(1, 0, 0, 1);
+        this.red.setDiffuse(1, 0, 0, 1);
+        this.red.setSpecular(1, 0, 0, 1);
+        this.red.setShininess(10.0);
+
         //create objects
         this.sphere = new MySphere(this.scene, 0.7, 6, 5);
         this.quad = new MyQuad(this.scene);
         this.triangle = new MyTriangle(this.scene);
         this.pyramid = new MyPyramid(this.scene, 4);
-        this.cylinder = new MyCylinder(this.scene, 5, 0.1, 0.1);
-        this.legCylinder = new MyCylinder(this.scene,5,0.5,0.1);
+        this.eye = new MyCylinder(this.scene, 5, 0.1, 0.1);
+        this.legCylinder = new MyCylinder(this.scene, 5, 0.5, 0.05);
     }
 
     setBranch(branch) {
@@ -47,12 +53,12 @@ class MyBird extends CGFobject {
     }
 
     updatePosition(t) {
-        this.wingsAngle = Math.PI * 50 * (1 + Math.sin(Math.PI * t * this.speedFactor / 500)) / 2 / 180;//alterna entre 0 e 30 graus e converte para radianos, 1 segundo para um ciclo completo
+        this.wingsAngle = Math.PI * 50 * (1 + Math.sin(Math.PI * t * this.speedFactor * (1 + this.speed) / 500)) / 2 / 180;//alterna entre 0 e 30 graus e converte para radianos, 1 segundo para um ciclo completo
         this.position =
             [this.position[0] + this.speed * this.speedFactor * Math.sin(this.orientation),
-            this.position[1] + ((Math.sin(Math.PI * t * this.speedFactor / 500)) / 2) - this.previousYDiff,
+            this.position[1] + ((Math.sin(Math.PI * t/* * this.speedFactor*/ / 500)) / 2) - this.previousYDiff,
             this.position[2] + this.speed * this.speedFactor * Math.cos(this.orientation)];
-        this.previousYDiff = ((Math.sin(Math.PI * t * this.speedFactor / 500)) / 2);
+        this.previousYDiff = ((Math.sin(Math.PI * t /* * this.speedFactor*/ / 500)) / 2);
 
     }
 
@@ -71,6 +77,10 @@ class MyBird extends CGFobject {
 
     setSpeedFactor(speedFactor) {
         this.speedFactor = speedFactor;
+    }
+
+    setBranch(branch) {
+        this.branch = branch;
     }
 
     reset() {
@@ -93,6 +103,8 @@ class MyBird extends CGFobject {
         this.scene.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);//scale bird
         this.scene.scale(0.6, 0.65, 0.6);//default scale
         this.scene.translate(0, 1, 1.3);//default position
+
+        this.red.apply();
 
         this.scene.pushMatrix();
         this.sphere.display();//head
@@ -154,28 +166,43 @@ class MyBird extends CGFobject {
         this.black.apply();
         this.scene.translate(-0.5, 0.25, 0.15);
         this.scene.rotate(Math.PI / 2, 0, 0, 1);
-        this.cylinder.display();//right eye
+        this.eye.display();//right eye
         this.scene.popMatrix();
         this.scene.pushMatrix();
         this.black.apply();
         this.scene.translate(0.5, 0.25, 0.15);
         this.scene.rotate(-Math.PI / 2, 0, 0, 1);
-        this.cylinder.display();//left eye
+        this.eye.display();//left eye
         this.scene.popMatrix();
-        
-        this.scene.pushMatrix();
+
         this.yellow.apply();
+
+        this.scene.pushMatrix();
         this.scene.translate(0, 0, 0.6);
         this.scene.rotate(Math.PI / 2, 1, 0, 0);
         this.scene.scale(0.25, 0.25, 0.25);
         this.pyramid.display();//beak
         this.scene.popMatrix();
 
-        //leg
-        this.yellow.apply();
         this.scene.pushMatrix();
-        this.scene.translate(0.3,-1.5,-1.25);
-        this.legCylinder.display();
+        this.scene.translate(0.2, -1.5, -1.35);
+        this.legCylinder.display();//left leg
+        this.scene.translate(-0.4, 0, 0);
+        this.legCylinder.display();//right leg
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(0.2, -1.5, -1.4);
+        this.scene.scale(0.5, 1, 1);
+        this.scene.rotate(-Math.PI / 4, 0, 1, 0);
+        this.triangle.display();//left foot
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(-0.2, -1.5, -1.4);
+        this.scene.scale(0.5, 1, 1);
+        this.scene.rotate(-Math.PI / 4, 0, 1, 0);
+        this.triangle.display();//right foot
         this.scene.popMatrix();
 
         this.scene.popMatrix();
