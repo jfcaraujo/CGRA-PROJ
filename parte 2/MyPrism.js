@@ -18,7 +18,7 @@ class MyPrism extends CGFobject {
         this.texCoords = [];
 
         var ang = 0;
-        var alphaAng = 2*Math.PI/this.slices;
+        var alphaAng = 2 * Math.PI / this.slices;
 
         for (var i = 0; i < this.slices; i++) {
             var sa = Math.sin(ang);
@@ -27,20 +27,20 @@ class MyPrism extends CGFobject {
             var caa = Math.cos(ang + alphaAng);
 
             //push the new vertices
-            this.vertices.push(ca,0,-sa);
-            this.vertices.push(ca,1,-sa);
-            this.vertices.push(caa,0,-saa);
-            this.vertices.push(caa,1,-saa);
+            this.vertices.push(ca, 0, -sa);
+            this.vertices.push(ca, 1, -sa);
+            this.vertices.push(caa, 0, -saa);
+            this.vertices.push(caa, 1, -saa);
 
             //normal auxiliary array
             var normal = [
-                saa-sa,
+                saa - sa,
                 0,
-                caa-ca
+                caa - ca
             ];
 
             //normalization
-            var nsize = Math.sqrt(normal[0]*normal[0] + normal[2]*normal[2]);
+            var nsize = Math.sqrt(normal[0] * normal[0] + normal[2] * normal[2]);
             normal[0] /= nsize;
             normal[2] /= nsize;
 
@@ -49,13 +49,13 @@ class MyPrism extends CGFobject {
                 this.normals.push(...normal);
             }
 
-            this.indices.push(4*i+2,4*i+1,4*i,4*i+1,4*i+2,4*i+3);
+            this.indices.push(4 * i + 2, 4 * i + 1, 4 * i, 4 * i + 1, 4 * i + 2, 4 * i + 3);
 
             //add texCoords
-            this.texCoords.push(i/this.slices,1);
-            this.texCoords.push(i/this.slices,0);
-            this.texCoords.push((i+1)/this.slices,1);
-            this.texCoords.push((i+1)/this.slices,0);
+            this.texCoords.push(i / this.slices, 1);
+            this.texCoords.push(i / this.slices, 0);
+            this.texCoords.push((i + 1) / this.slices, 1);
+            this.texCoords.push((i + 1) / this.slices, 0);
 
             ang += alphaAng;
         }
@@ -65,13 +65,13 @@ class MyPrism extends CGFobject {
     }
     displayT() {
         this.scene.pushMatrix();
-        this.scene.scale(this.radius,this.height,this.radius);
+        this.scene.scale(this.radius, this.height, this.radius);
         this.display();
         this.scene.popMatrix();
     }
     updateBuffers(complexity) {
-        this.slices = 3 * Math.round(9*complexity);
-        
+        this.slices = 3 * Math.round(9 * complexity);
+
         //reinitialize buffers
         this.initBuffers();
         this.initNormalVisBuffers();

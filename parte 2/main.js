@@ -25,6 +25,7 @@ serialInclude([
         'MyLSystem.js',
         'MyLightningUnit.js',
         'MyLightning.js',
+        'MySquare.js',
 
     main = function () {
         var app = new CGFapplication(document.body);

@@ -58,14 +58,14 @@ class MyScene extends CGFscene {
         return Math.random() * 21 - 10;
     }
     getRandomRot() {
-        return Math.random() * 2*Math.PI;
+        return Math.random() * 2 * Math.PI;
     }
     initBranches() {
         this.branches = [
-            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot()),
-            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot()),
-            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot()),
-            new MyTreeBranch(this,this.getRandomPos(), this.getRandomPos(),2,this.getRandomRot())
+            new MyTreeBranch(this, this.getRandomPos(), this.getRandomPos(), 2, this.getRandomRot()),
+            new MyTreeBranch(this, this.getRandomPos(), this.getRandomPos(), 2, this.getRandomRot()),
+            new MyTreeBranch(this, this.getRandomPos(), this.getRandomPos(), 2, this.getRandomRot()),
+            new MyTreeBranch(this, this.getRandomPos(), this.getRandomPos(), 2, this.getRandomRot())
         ];
     }
     displayBranches() {
@@ -105,12 +105,13 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyP")) {
             text += " P ";
             keysPressed = true;
+            this.bird.descend();
         }
         if (this.gui.isKeyPressed("KeyL")) {
             this.lightningAnimationJustStarted = true;
         }
         if (keysPressed)
-            console.log(text);
+            console.log(text+this.bird.position[1]+"hhf"+this.bird.descendPart);
     }
 
     update(t) {
