@@ -27,6 +27,7 @@ class MyScene extends CGFscene {
         this.terrain = new MyTerrain(this, 32);
         this.bird = new MyBird(this);
         this.nest = new MyNest(this,2,5,5);
+        this.lightning = new MyLightning(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -34,6 +35,9 @@ class MyScene extends CGFscene {
         this.displayBird = true;
         this.speedFactor = 1;
         this.scaleFactor = 1;
+
+        this.lightningAnimation = false;
+        this.lightningAnimationJustStarted = false;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -102,6 +106,9 @@ class MyScene extends CGFscene {
             text += " P ";
             keysPressed = true;
         }
+        if (this.gui.isKeyPressed("KeyL")) {
+            this.lightningAnimationJustStarted = true;
+        }
         if (keysPressed)
             console.log(text);
     }
@@ -109,7 +116,18 @@ class MyScene extends CGFscene {
     update(t) {
         this.checkKeys();
         this.bird.updatePosition(t);
-
+        if (t >= this.startTime + 1000) {
+            this.lightningAnimation = false;
+        }
+        if (this.lightningAnimationJustStarted) {
+            this.lightningAnimation = true;
+            this.lightningAnimationJustStarted = false;
+            this.startTime = t;
+            this.lightning.startAnimation(t);
+        }
+        if (this.lightningAnimation) {
+            this.lightning.update(t);
+        }
     }
 
     setSpeedFactor() {
@@ -145,7 +163,7 @@ class MyScene extends CGFscene {
 
         this.pushMatrix();
         this.rotate(-0.5 * Math.PI, 1, 0, 0);
-        this.scale(60, 60, 1);
+        this.scale(120, 120, 1);
         if (this.displayPlane)
             this.terrain.display();
         this.popMatrix();
@@ -153,6 +171,14 @@ class MyScene extends CGFscene {
         this.displayBranches();
 
         this.nest.display();
+
+        if (this.lightningAnimation) {
+            this.pushMatrix();
+            this.translate(0,10,0);
+            this.rotate(Math.PI,0,0,1);
+            this.lightning.display();
+            this.popMatrix();
+        }
         
         // ---- END Primitive drawing section
     }
