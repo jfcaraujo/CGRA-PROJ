@@ -17,7 +17,7 @@ class MyBird extends CGFobject {
         this.descending = false;
         this.descendingStart = 0;
         this.descendPart = 0;
-        this.branch = null;
+        this.branch = 0;
 
         this.init();
     }
@@ -65,10 +65,16 @@ class MyBird extends CGFobject {
         else {
             if (this.descendingStart == 0) {
                 this.descendingStart = t;
-                this.descendPart = (this.position[1] - 2);
+                this.descendPart = (this.position[1] - 2) / 2;
+                this.branch=0;
+                //this.branch=this.descendPart * (Math.cos(Math.PI * (t - this.descendingStart) / 1000))-1;
+                //this.position[1] -= this.branch;
             }
-            else if (t - this.descendingStart <= 2000)
-                this.position[1] += this.descendPart * (Math.cos(Math.PI * (t - this.descendingStart) / 1000)) - this.descendPart * (Math.cos(Math.PI * (t - this.descendingStart - 50) / 1000));
+            else if (t - this.descendingStart < 2000) {
+                this.branch += this.descendPart * ((Math.cos(Math.PI * (t - this.descendingStart) / 1000)) - (Math.cos(Math.PI * (t - this.descendingStart - 50) / 1000)));
+
+                this.position[1] += this.descendPart * ((Math.cos(Math.PI * (t - this.descendingStart) / 1000)) - (Math.cos(Math.PI * (t - this.descendingStart - 50) / 1000)));
+            }
             //else if (t - this.descendingStart <= 2000)
             //   this.position[1] -= this.descendPart*(Math.cos(Math.PI * (t - this.descendingStart) / 1000))+this.descendPart*(Math.cos(Math.PI * (t - this.descendingStart-50) / 1000));
             /*
@@ -79,6 +85,7 @@ class MyBird extends CGFobject {
                 this.descending = false;
                 this.position[1] = 5 + this.previousYDiff;
                 this.descendingStart = 0;
+                this.branch=0;
             }
         }
         this.previousYDiff = ((Math.sin(Math.PI * t /* * this.speedFactor*/ / 500)) / 2);
@@ -113,6 +120,7 @@ class MyBird extends CGFobject {
         this.speed = 0;
         this.descending = false;
         this.descendingStart = 0;
+        this.branch = 0;
     }
 
     descend() {

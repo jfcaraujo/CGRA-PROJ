@@ -104,7 +104,7 @@ class MyScene extends CGFscene {
             this.bird.descend();
         }
         if (keysPressed)
-            console.log(text+this.bird.position[1]+"hhf"+this.bird.descendPart);
+            console.log(text+this.bird.position[1]+"hhf"+2*this.bird.branch);
     }
 
     update(t) {
