@@ -28,6 +28,16 @@ class MyScene extends CGFscene {
         this.bird = new MyBird(this);
         this.nest = new MyNest(this,2,5,5);
         this.lightning = new MyLightning(this);
+        this.plants = [];
+        this.plantCoords = [];
+
+        for (var i = 0; i < 15; i++) {
+            this.plants.push(new MyLPlant(this));
+        }
+
+        for (var i = 0; i < 16; i++) {
+            this.plantCoords.push(Math.random() * 40 - 20);
+        }
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -131,6 +141,15 @@ class MyScene extends CGFscene {
         }
     }
 
+    displayPlants() {
+        for (var i = 0; i < 15; i++) {
+            this.pushMatrix();
+            this.translate(this.plantCoords[i],2,this.plantCoords[i+1]);
+            this.plants[i].display();
+            this.popMatrix();
+        }
+    }
+
     setSpeedFactor() {
         this.bird.setSpeedFactor(this.speedFactor);
     }
@@ -180,6 +199,8 @@ class MyScene extends CGFscene {
             this.lightning.display();
             this.popMatrix();
         }
+
+        this.displayPlants();
         
         // ---- END Primitive drawing section
     }
