@@ -30,7 +30,7 @@ class MyScene extends CGFscene {
         this.lightning = new MyLightning(this);
         this.plants = [];
         this.plantCoords = [];
-        this.time=0;
+        this.time = 0;
 
         for (var i = 0; i < 15; i++) {
             this.plants.push(new MyLPlant(this));
@@ -81,7 +81,8 @@ class MyScene extends CGFscene {
     }
     displayBranches() {
         for (var i = 0; i < this.branches.length; i++) {
-            this.branches[i].display();
+            if (this.branches[i].onTheGround)
+                this.branches[i].display();
         }
     }
     checkKeys() {
@@ -123,51 +124,41 @@ class MyScene extends CGFscene {
             keysPressed = true;
             this.lightningAnimationJustStarted = true;
         }
-        if (this.gui.isKeyPressed("KeyB")) {
-            this.bird.branch = new MyTreeBranch(this, 0, 0, 0, Math.PI / 2);
-            this.branches.slice(0, 1);
-        }
-        if (this.gui.isKeyPressed("KeyC")) {
-            this.bird.branch = null;
-            this.nest.branches.push(this.nest.branch);
-        }
         if (keysPressed)
-            console.log(text + this.bird.position[1] + "hhf" + 2 * this.bird.acumulator);
+            console.log(text);
     }
 
     update(t) {
-        this.time+=50;
+        this.time += 50;
         this.checkKeys();
         this.bird.updatePosition(this.time);
-        if ( this.time>= this.startTime + 1000) {
+        if (this.time >= this.startTime + 1000) {
             this.lightningAnimation = false;
         }
         if (this.lightningAnimationJustStarted) {
             this.lightningAnimation = true;
             this.lightningAnimationJustStarted = false;
-            this.startTime =  this.time;
-            this.lightning.startAnimation( this.time);
+            this.startTime = this.time;
+            this.lightning.startAnimation(this.time);
         }
         if (this.lightningAnimation) {
-            this.lightning.update( this.time);
+            this.lightning.update(this.time);
         }
-        if (this.bird.descending && ( this.time - this.bird.descendingStart) == 1000) {
-            console.log("testing");
+        if (this.bird.descending && (this.time - this.bird.descendingStart) == 1000) {
             if (this.bird.branch == null)
                 for (var i = 0; i < this.branches.length; i++) {
-                    if (Math.abs(this.branches[i].coordX - this.bird.position[0]) < 1.5 && Math.abs(this.branches[i].coordY - this.bird.position[2]) < 1.5) {
+                    if (this.branches[i].onTheGround && Math.abs(this.branches[i].coordX - this.bird.position[0]) < 1.5 && Math.abs(this.branches[i].coordY - this.bird.position[2]) < 1.5) {
                         this.bird.branch = new MyTreeBranch(this, 0, 0, 0, Math.PI / 2);
                         this.branches.slice(i, 1);
-                        console.log("Picked up branch");
+                        this.branches[i].onTheGround = false;
                         break;
                     }
-                    console.log("Position: " + this.branches[i].coordX + " " + this.branches[i].coordY);
                 }
             else if (Math.abs(this.nest.coordX - this.bird.position[0]) < 3 && Math.abs(this.nest.coordY - this.bird.position[2]) < 3) {
-                this.nest.branches.push(this.bird.branch);//is this valid?
+                this.nest.branches.push(this.bird.branch);
                 this.bird.branch = null;
             }
-        } else if (this.bird.descending) console.log("Time:" + ( this.time - this.bird.descendingStart));
+        }
     }
 
     displayPlants() {

@@ -11,6 +11,7 @@ class MyTreeBranch extends CGFobject {
         this.coordY = coordY;
         this.coordZ = coordZ;
         this.rotation = rotation;
+        this.onTheGround = true;
 
         this.cylinder = new MyCylinder(this.scene, 10, 3, 0.1);
         this.smallCylinder = new MyCylinder(this.scene, 10, 1, 0.05);

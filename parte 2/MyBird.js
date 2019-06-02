@@ -17,7 +17,6 @@ class MyBird extends CGFobject {
         this.descending = false;
         this.descendingStart = 0;
         this.descendPart = 0;
-        this.acumulator = 0;
         this.branch = null;
 
         this.init();
@@ -52,7 +51,7 @@ class MyBird extends CGFobject {
     }
 
     setBranch(branch) {
-        this.acumulator = branch;
+        this.branch = branch;
     }
 
     updatePosition(t) {
@@ -67,26 +66,15 @@ class MyBird extends CGFobject {
             if (this.descendingStart == 0) {
                 this.descendingStart = t;
                 this.descendPart = (this.position[1] - 2) / 2;
-                this.acumulator = 0;
-                //this.branch=this.descendPart * (Math.cos(Math.PI * (t - this.descendingStart) / 1000))-1;
-                //this.position[1] -= this.branch;
             }
-            else if (t - this.descendingStart < 2000) {
-                this.acumulator += this.descendPart * ((Math.cos(Math.PI * (t - this.descendingStart) / 1000)) - (Math.cos(Math.PI * (t - this.descendingStart - 50) / 1000)));
+            else if (t - this.descendingStart <= 2000) {
 
                 this.position[1] += this.descendPart * ((Math.cos(Math.PI * (t - this.descendingStart) / 1000)) - (Math.cos(Math.PI * (t - this.descendingStart - 50) / 1000)));
             }
-            //else if (t - this.descendingStart <= 2000)
-            //   this.position[1] -= this.descendPart*(Math.cos(Math.PI * (t - this.descendingStart) / 1000))+this.descendPart*(Math.cos(Math.PI * (t - this.descendingStart-50) / 1000));
-            /*
-        else
-            this.position[1] += 2*(Math.cos(Math.PI * (t - this.descendingStart) / 1000) - Math.cos(Math.PI * (t - 50 - this.descendingStart) / 1000));
-        */
-            else { //if ((t - this.descendingStart) > 2000) {
+            else { 
                 this.descending = false;
                 this.position[1] = 5 + this.previousYDiff;
                 this.descendingStart = 0;
-                this.acumulator = 0;
             }
         }
         this.previousYDiff = ((Math.sin(Math.PI * t /* * this.speedFactor*/ / 500)) / 2);
@@ -112,7 +100,7 @@ class MyBird extends CGFobject {
     }
 
     setBranch(branch) {
-        this.acumulator = branch;
+        this.branch = branch;
     }
 
     reset() {
@@ -121,7 +109,6 @@ class MyBird extends CGFobject {
         this.speed = 0;
         this.descending = false;
         this.descendingStart = 0;
-        this.acumulator = 0;
         this.branch = null;
     }
 
