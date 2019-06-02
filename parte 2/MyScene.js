@@ -30,6 +30,7 @@ class MyScene extends CGFscene {
         this.lightning = new MyLightning(this);
         this.plants = [];
         this.plantCoords = [];
+        this.time=0;
 
         for (var i = 0; i < 15; i++) {
             this.plants.push(new MyLPlant(this));
@@ -135,37 +136,38 @@ class MyScene extends CGFscene {
     }
 
     update(t) {
+        this.time+=50;
         this.checkKeys();
-        this.bird.updatePosition(t);
-        if (t >= this.startTime + 1000) {
+        this.bird.updatePosition(this.time);
+        if ( this.time>= this.startTime + 1000) {
             this.lightningAnimation = false;
         }
         if (this.lightningAnimationJustStarted) {
             this.lightningAnimation = true;
             this.lightningAnimationJustStarted = false;
-            this.startTime = t;
-            this.lightning.startAnimation(t);
+            this.startTime =  this.time;
+            this.lightning.startAnimation( this.time);
         }
         if (this.lightningAnimation) {
-            this.lightning.update(t);
+            this.lightning.update( this.time);
         }
-        if (this.bird.descending && (t - this.bird.descendingStart) == 1000) {
+        if (this.bird.descending && ( this.time - this.bird.descendingStart) == 1000) {
             console.log("testing");
             if (this.bird.branch == null)
                 for (var i = 0; i < this.branches.length; i++) {
-                    if (Math.abs(this.branches[i].coordX - this.bird.position[0]) < 3 && Math.abs(this.branches[i].coordZ - this.bird.position[2]) < 3) {
+                    if (Math.abs(this.branches[i].coordX - this.bird.position[0]) < 1.5 && Math.abs(this.branches[i].coordY - this.bird.position[2]) < 1.5) {
                         this.bird.branch = new MyTreeBranch(this, 0, 0, 0, Math.PI / 2);
                         this.branches.slice(i, 1);
                         console.log("Picked up branch");
                         break;
                     }
-                    console.log("Position: " + this.branches[i].coordX + " " + this.branches.coordZ);
+                    console.log("Position: " + this.branches[i].coordX + " " + this.branches[i].coordY);
                 }
             else if (Math.abs(this.nest.coordX - this.bird.position[0]) < 3 && Math.abs(this.nest.coordY - this.bird.position[2]) < 3) {
                 this.nest.branches.push(this.bird.branch);//is this valid?
                 this.bird.branch = null;
             }
-        } else if (this.bird.descending) console.log("Time:" + (t - this.bird.descendingStart));
+        } else if (this.bird.descending) console.log("Time:" + ( this.time - this.bird.descendingStart));
     }
 
     displayPlants() {
