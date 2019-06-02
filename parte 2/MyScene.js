@@ -26,7 +26,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.terrain = new MyTerrain(this, 32);
         this.bird = new MyBird(this);
-        this.nest = new MyNest(this,2,5,5);
+        this.nest = new MyNest(this, 2, 5, 5);
         this.lightning = new MyLightning(this);
         this.plants = [];
         this.plantCoords = [];
@@ -79,7 +79,7 @@ class MyScene extends CGFscene {
         ];
     }
     displayBranches() {
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < this.branches.length; i++) {
             this.branches[i].display();
         }
     }
@@ -118,10 +118,20 @@ class MyScene extends CGFscene {
             this.bird.descend();
         }
         if (this.gui.isKeyPressed("KeyL")) {
+            text += " P ";
+            keysPressed = true;
             this.lightningAnimationJustStarted = true;
         }
+        if (this.gui.isKeyPressed("KeyB")) {
+            this.bird.branch = new MyTreeBranch(this, 0, 0, 0, Math.PI / 2);
+            this.branches.slice(0, 1);
+        }
+        if (this.gui.isKeyPressed("KeyC")) {
+            this.bird.branch = null;
+            this.nest.branches.push(this.nest.branch);
+        }
         if (keysPressed)
-            console.log(text+this.bird.position[1]+"hhf"+2*this.bird.branch);
+            console.log(text + this.bird.position[1] + "hhf" + 2 * this.bird.acumulator);
     }
 
     update(t) {
@@ -139,12 +149,29 @@ class MyScene extends CGFscene {
         if (this.lightningAnimation) {
             this.lightning.update(t);
         }
+        if (this.bird.descending && (t - this.bird.descendingStart) == 1000) {
+            console.log("testing");
+            if (this.bird.branch == null)
+                for (var i = 0; i < this.branches.length; i++) {
+                    if (Math.abs(this.branches[i].coordX - this.bird.position[0]) < 3 && Math.abs(this.branches[i].coordZ - this.bird.position[2]) < 3) {
+                        this.bird.branch = new MyTreeBranch(this, 0, 0, 0, Math.PI / 2);
+                        this.branches.slice(i, 1);
+                        console.log("Picked up branch");
+                        break;
+                    }
+                    console.log("Position: " + this.branches[i].coordX + " " + this.branches.coordZ);
+                }
+            else if (Math.abs(this.nest.coordX - this.bird.position[0]) < 3 && Math.abs(this.nest.coordY - this.bird.position[2]) < 3) {
+                this.nest.branches.push(this.bird.branch);//is this valid?
+                this.bird.branch = null;
+            }
+        } else if (this.bird.descending) console.log("Time:" + (t - this.bird.descendingStart));
     }
 
     displayPlants() {
         for (var i = 0; i < 15; i++) {
             this.pushMatrix();
-            this.translate(this.plantCoords[i],2,this.plantCoords[i+1]);
+            this.translate(this.plantCoords[i], 2, this.plantCoords[i + 1]);
             this.plants[i].display();
             this.popMatrix();
         }
@@ -194,14 +221,14 @@ class MyScene extends CGFscene {
 
         if (this.lightningAnimation) {
             this.pushMatrix();
-            this.translate(0,10,0);
-            this.rotate(Math.PI,0,0,1);
+            this.translate(0, 10, 0);
+            this.rotate(Math.PI, 0, 0, 1);
             this.lightning.display();
             this.popMatrix();
         }
 
         this.displayPlants();
-        
+
         // ---- END Primitive drawing section
     }
 }

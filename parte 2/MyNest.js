@@ -12,6 +12,7 @@ class MyNest extends CGFobject {
         this.coordY = coordY;
 
         this.branch = new MyTreeBranch(this.scene, 0, 0, 0, 0);
+        this.branches = [];
     }
 
     displaySingleBranchWall(ang, height) {
@@ -45,6 +46,14 @@ class MyNest extends CGFobject {
 
         this.displayFloor();
 
+        for (var i = 0; i < this.branches.length; i++) {
+            this.displaySingleBranchWall(i * Math.PI / 6, 1+0.2*Math.round(Math.floor(i/12)));
+            /*this.scene.pushMatrix();
+            this.scene.translate(0, 0.2, 0);
+            this.scene.rotate(i * Math.PI / 6, 0, 1, 0);
+            this.branch.display();
+            this.scene.popMatrix();*/
+        }
         this.scene.popMatrix();
     }
 }

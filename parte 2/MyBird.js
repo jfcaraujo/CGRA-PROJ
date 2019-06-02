@@ -17,7 +17,8 @@ class MyBird extends CGFobject {
         this.descending = false;
         this.descendingStart = 0;
         this.descendPart = 0;
-        this.branch = 0;
+        this.acumulator = 0;
+        this.branch = null;
 
         this.init();
     }
@@ -51,7 +52,7 @@ class MyBird extends CGFobject {
     }
 
     setBranch(branch) {
-        this.branch = branch;
+        this.acumulator = branch;
     }
 
     updatePosition(t) {
@@ -66,12 +67,12 @@ class MyBird extends CGFobject {
             if (this.descendingStart == 0) {
                 this.descendingStart = t;
                 this.descendPart = (this.position[1] - 2) / 2;
-                this.branch=0;
+                this.acumulator = 0;
                 //this.branch=this.descendPart * (Math.cos(Math.PI * (t - this.descendingStart) / 1000))-1;
                 //this.position[1] -= this.branch;
             }
             else if (t - this.descendingStart < 2000) {
-                this.branch += this.descendPart * ((Math.cos(Math.PI * (t - this.descendingStart) / 1000)) - (Math.cos(Math.PI * (t - this.descendingStart - 50) / 1000)));
+                this.acumulator += this.descendPart * ((Math.cos(Math.PI * (t - this.descendingStart) / 1000)) - (Math.cos(Math.PI * (t - this.descendingStart - 50) / 1000)));
 
                 this.position[1] += this.descendPart * ((Math.cos(Math.PI * (t - this.descendingStart) / 1000)) - (Math.cos(Math.PI * (t - this.descendingStart - 50) / 1000)));
             }
@@ -85,7 +86,7 @@ class MyBird extends CGFobject {
                 this.descending = false;
                 this.position[1] = 5 + this.previousYDiff;
                 this.descendingStart = 0;
-                this.branch=0;
+                this.acumulator = 0;
             }
         }
         this.previousYDiff = ((Math.sin(Math.PI * t /* * this.speedFactor*/ / 500)) / 2);
@@ -111,7 +112,7 @@ class MyBird extends CGFobject {
     }
 
     setBranch(branch) {
-        this.branch = branch;
+        this.acumulator = branch;
     }
 
     reset() {
@@ -120,7 +121,8 @@ class MyBird extends CGFobject {
         this.speed = 0;
         this.descending = false;
         this.descendingStart = 0;
-        this.branch = 0;
+        this.acumulator = 0;
+        this.branch = null;
     }
 
     descend() {
@@ -156,6 +158,7 @@ class MyBird extends CGFobject {
         this.scene.rotate(Math.PI * 3 / 4, 0, 1, 0);
         this.triangle.display();//tail
         this.scene.popMatrix();
+
 
         this.scene.pushMatrix();
         this.scene.translate(-0.66, -0.5, -1.25);
@@ -200,6 +203,7 @@ class MyBird extends CGFobject {
 
         this.scene.popMatrix();
 
+
         this.scene.pushMatrix();
         this.black.apply();
         this.scene.translate(-0.5, 0.25, 0.15);
@@ -242,6 +246,14 @@ class MyBird extends CGFobject {
         this.scene.rotate(-Math.PI / 4, 0, 1, 0);
         this.triangle.display();//right foot
         this.scene.popMatrix();
+
+        if (this.branch != null) {
+            this.scene.pushMatrix();
+            this.scene.scale(1/0.6, 1/0.65, 1/0.6);//counter bird default scale
+            this.scene.translate(-1.5, -1.1, -0.7);
+            this.branch.display();//branch
+            this.scene.popMatrix();
+        }
 
         this.scene.popMatrix();
 
