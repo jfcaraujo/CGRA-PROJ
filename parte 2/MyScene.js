@@ -42,7 +42,7 @@ class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displayPlane = false;
+        this.displayPlane = true;
         this.displayBird = true;
         this.speedFactor = 1;
         this.scaleFactor = 1;
