@@ -28,6 +28,10 @@ class MyScene extends CGFscene {
         this.bird = new MyBird(this);
         this.nest = new MyNest(this, 2, 5, 5);
         this.lightning = new MyLightning(this);
+        this.house = new MyHouse(this);
+        this.cubeMap = new MyCubeMap(this);
+        this.cubeMap.dayMode();
+
         this.plants = [];
         this.plantCoords = [];
         this.time = 0;
@@ -221,6 +225,10 @@ class MyScene extends CGFscene {
         }
 
         this.displayPlants();
+
+        this.cubeMap.display();
+
+        this.house.display();
 
         // ---- END Primitive drawing section
     }

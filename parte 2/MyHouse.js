@@ -59,6 +59,10 @@ class MyHouse extends CGFobject {
 	}
 
 	display() {
+		//translate the whole house
+		this.scene.pushMatrix();
+		this.scene.translate(-10,2,-10);
+
 		// main house walls
 		this.scene.pushMatrix();
 		this.scene.scale(5, 3, 12);
@@ -167,6 +171,9 @@ class MyHouse extends CGFobject {
 		this.scene.rotate(-Math.PI / 2, 0, 1, 0);
 		this.scene.scale(2, 1, 1);
 		this.quad.display();
+		this.scene.popMatrix();
+
+		//pop transaltion matrix
 		this.scene.popMatrix();
 	}
 }
